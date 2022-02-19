@@ -1,0 +1,2 @@
+# algorythm.dev
+Personal Website

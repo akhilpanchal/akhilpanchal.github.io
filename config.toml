@@ -1,4 +1,4 @@
-baseurl      = "localhost"
+baseurl      = "https://akhilpanchal.github.io/algorythm.dev"
 title        = "My Blog"
 languageCode = "en-us"
 theme        = "hello-friend-ng"

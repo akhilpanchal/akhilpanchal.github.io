@@ -3,21 +3,24 @@ title        = "My Blog"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
 paginate     = 10
+pluralizelisttitles = false
 
 [params]
+    customCSS = ["/styles.css"]
+    enableThemeToggle = true
     dateform        = "Jan 2, 2006"
     dateformShort   = "Jan 2"
     dateformNum     = "2006-01-02"
     dateformNumTime = "2006-01-02 15:04"
 
     # Subtitle for home
-    homeSubtitle = "Coming soon..."
+    homeSubtitle = "Coming Soon..."
 
     # Set disableReadOtherPosts to true in order to hide the links to other posts.
     disableReadOtherPosts = false
 
     # Enable sharing buttons, if you like
-    enableSharingButtons = true
+    # enableSharingButtons = true
 
     # Metadata mostly used in document's head
     description = "My new homepage or blog"
@@ -32,13 +35,13 @@ paginate     = 10
 [languages]
     [languages.en]
         title = "Algorythm"
-        subtitle = "Code | Music | Puns"
+        subtitle = "Akhil Panchal"
         keywords = ""
         copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
         readOtherPosts = "Read other posts"
 
         [languages.en.params.logo]
-        logoText = ""
+        logoText = "algorythm 🏠"
         logoHomeLink = "/"
         # or
         #
@@ -50,3 +53,14 @@ paginate     = 10
         identifier = "blog"
         name       = "Blog"
         url        = "/posts"
+        weight = 1
+    [[menu.main]]
+        identifier = "more"
+        name       = "More"
+        url        = "/more"
+        weight = 2
+    [[menu.main]]
+        identifier = "about"
+        name       = "About"
+        url        = "/about"
+        weight = 3

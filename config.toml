@@ -14,13 +14,13 @@ pluralizelisttitles = false
     dateformNumTime = "2006-01-02 15:04"
 
     # Subtitle for home
-    homeSubtitle = "Coming Soon..."
+    homeSubtitle = "Software Engineer | Singer | Cycling Enthusiast"
 
     # Set disableReadOtherPosts to true in order to hide the links to other posts.
     disableReadOtherPosts = false
 
     # Enable sharing buttons, if you like
-    # enableSharingButtons = true
+    enableSharingButtons = true
 
     # Metadata mostly used in document's head
     description = "My new homepage or blog"
@@ -34,8 +34,8 @@ pluralizelisttitles = false
 
 [languages]
     [languages.en]
-        title = "Algorythm"
-        subtitle = "Akhil Panchal"
+        title = "Akhil Panchal"
+        subtitle = "Algorythm"
         keywords = ""
         copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
         readOtherPosts = "Read other posts"
@@ -64,3 +64,16 @@ pluralizelisttitles = false
         name       = "About"
         url        = "/about"
         weight = 3
+
+[[params.social]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/akhilpanchal"
+[[params.social]]
+  name = "github"
+  url = "https://github.com/akhilpanchal"
+[[params.social]]
+  name = "instagram"
+  url = "https://www.instagram.com/akhilpanchal"
+[[params.social]]
+  name = "youtube"
+  url = "https://www.instagram.com/akhilpanchal"

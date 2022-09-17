@@ -16,3 +16,7 @@ hugo server -D
 
 Starts the server in draft mode
 
+# Add a static image
+
+![Alt Text for image](/path-from-static-folder)
+

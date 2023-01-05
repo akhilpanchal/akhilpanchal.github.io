@@ -11,8 +11,8 @@ react-dnd react-beautiful-dnd react-draggable dragula I recently had to look thr
 <p>I recently had to look through the wild and decide which drag and drop library works best for our use-cases. After skimming through the APIs and the github pages of some of the popular libraries, I decided to explore and play around with <a href="https://github.com/react-dnd/react-dnd/">react-dnd</a> and <a href="https://github.com/atlassian/react-beautiful-dnd">react-beautiful-dnd</a>. This post covers the contrast between the 2 really amazing libraries.</p>
 <h3 id="tldr">TLDR;</h3>
 <ol>
-<li>Use <code>react-beautiful-dnd</code> if your use case is to build really interactions for lists, without many custom VX requirements.</li>
-<li>Use <code>react-dnd</code> if you want to be in control of the drag drop interaction a lot more, and set yourself up in a better situation for any future custom use cases.</li>
+<li>Use <code>react-beautiful-dnd</code> if your use case is to build really simple drag drop interactions for lists, without much custom requirements.</li>
+<li>Use <code>react-dnd</code> if you want to be in a lot more control of the drag drop interaction, and set yourself up in a better situation for any future customization.</li>
 <li>Explore <code>react-draggable</code>, <code>dragula</code> for everything in between.</li>
 </ol>
 <hr>

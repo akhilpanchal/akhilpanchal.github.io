@@ -55,9 +55,9 @@ pluralizelisttitles = false
         url        = "/posts"
         weight = 1
     [[menu.main]]
-        identifier = "more"
-        name       = "More"
-        url        = "/more"
+        identifier = "music"
+        name       = "Music"
+        url        = "/music"
         weight = 2
     [[menu.main]]
         identifier = "about"

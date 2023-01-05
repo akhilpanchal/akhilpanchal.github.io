@@ -26,8 +26,8 @@ I recently had to look through the wild and decide which drag and drop library w
 
 ### TLDR;
 
-1. Use `react-beautiful-dnd` if your use case is to build really interactions for lists, without many custom VX requirements.
-1. Use `react-dnd` if you want to be in control of the drag drop interaction a lot more, and set yourself up in a better situation for any future custom use cases.
+1. Use `react-beautiful-dnd` if your use case is to build really simple drag drop interactions for lists, without much custom requirements.
+1. Use `react-dnd` if you want to be in a lot more control of the drag drop interaction, and set yourself up in a better situation for any future customization.
 1. Explore `react-draggable`, `dragula` for everything in between.
 
 ---

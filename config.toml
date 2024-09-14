@@ -1,5 +1,5 @@
 baseurl      = "https://algorythm.dev"
-title        = "My Blog"
+title        = "Akhil Panchal"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
 paginate     = 10

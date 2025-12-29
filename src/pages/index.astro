@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allBlogPosts = await getCollection('blog');
+const allMusicPosts = await getCollection('music');
+
+// Sort by date descending
+const recentBlogPosts = allBlogPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const recentMusicPosts = allMusicPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 2);
+---
+
+<BaseLayout>
+  <Header />
+  
+  <main class="flex-1 max-w-4xl mx-auto px-4 py-16 w-full">
+    <!-- Hero Section -->
+    <section class="mb-16 text-center">
+      <h1 class="text-5xl font-bold mb-4">Akhil Panchal</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+        Software Engineer | Singer | Cycling Enthusiast
+      </p>
+      <div class="flex justify-center gap-4">
+        <a 
+          href="/posts" 
+          class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          Read Blog
+        </a>
+        <a 
+          href="/music" 
+          class="px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          Listen to Music
+        </a>
+      </div>
+    </section>
+    
+    <!-- Recent Blog Posts -->
+    <section class="mb-16">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-bold">Recent Posts</h2>
+        <a href="/posts" class="text-blue-500 dark:text-blue-400 hover:underline">
+          View all →
+        </a>
+      </div>
+      
+      <div class="space-y-8">
+        {recentBlogPosts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            date={post.data.date}
+            slug={`/posts/${post.slug}`}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+    </section>
+    
+    <!-- Recent Music Posts -->
+    {recentMusicPosts.length > 0 && (
+      <section>
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-3xl font-bold">Recent Music</h2>
+          <a href="/music" class="text-blue-500 dark:text-blue-400 hover:underline">
+            View all →
+          </a>
+        </div>
+        
+        <div class="space-y-8">
+          {recentMusicPosts.map((post) => (
+            <PostCard
+              title={post.data.title}
+              date={post.data.date}
+              slug={`/music/${post.slug}`}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+  </main>
+  
+  <Footer />
+</BaseLayout>

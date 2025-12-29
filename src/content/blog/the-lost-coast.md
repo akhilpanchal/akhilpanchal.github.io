@@ -1,12 +1,7 @@
 ---
 title: "The Call of the Lost Coast"
-date: 2024-09-14T02:41:16-07:00
-toc: false
-tags:
-    - lostcoast
-    - chatgpt
-    - backpacking
-    - philosophy
+date: 2024-09-14
+tags: ["lost-coast", "chatgpt", "backpacking", "philosophy"]
 ---
 
 ### A Journey Beyond the Horizon

@@ -1,0 +1,46 @@
+---
+import ThemeToggle from './ThemeToggle';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-gray-200 dark:border-gray-800">
+  <nav class="max-w-4xl mx-auto px-4 py-6">
+    <div class="flex justify-between items-center">
+      <a href="/" class="text-xl font-bold hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+        algorythm 🏠
+      </a>
+      
+      <div class="flex items-center gap-6">
+        <a
+          href="/posts"
+          class:list={[
+            "hover:text-blue-500 dark:hover:text-blue-400 transition-colors",
+            currentPath.startsWith('/posts') && "text-blue-500 dark:text-blue-400 font-semibold"
+          ]}
+        >
+          Blog
+        </a>
+        <a
+          href="/music"
+          class:list={[
+            "hover:text-blue-500 dark:hover:text-blue-400 transition-colors",
+            currentPath.startsWith('/music') && "text-blue-500 dark:text-blue-400 font-semibold"
+          ]}
+        >
+          Music
+        </a>
+        <a
+          href="/about"
+          class:list={[
+            "hover:text-blue-500 dark:hover:text-blue-400 transition-colors",
+            currentPath === '/about' && "text-blue-500 dark:text-blue-400 font-semibold"
+          ]}
+        >
+          About
+        </a>
+        <ThemeToggle client:load />
+      </div>
+    </div>
+  </nav>
+</header>

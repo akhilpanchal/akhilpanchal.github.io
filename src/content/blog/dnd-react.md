@@ -1,15 +1,7 @@
 ---
 title: "Drag and Drop libraries in React.js"
-date: 2021-01-16T23:18:03-07:00
-toc: false
-images:
-tags:
-  - react
-  - javascript
-  - dragdrop
-  - opensource
-  - react-dnd
-  - react-beautiful-dnd
+date: 2021-01-16
+tags: ["react", "javascript", "dragdrop", "opensource", "react-dnd", "react-beautiful-dnd"]
 ---
 
 ![Cover image](/maria-teneva.jpg)

@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: 255 255 255;
+    --color-text: 18 18 18;
+    --color-primary: 59 130 246;
+    --color-secondary: 107 114 128;
+    --color-border: 229 231 235;
+  }
+
+  .dark {
+    --color-bg: 18 18 18;
+    --color-text: 245 245 245;
+    --color-primary: 96 165 250;
+    --color-secondary: 156 163 175;
+    --color-border: 55 65 81;
+  }
+
+  body {
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    @apply transition-colors duration-200;
+  }
+
+  /* Post content styling */
+  .post-content {
+    @apply text-justify;
+  }
+
+  .post-content h1,
+  .post-content h2,
+  .post-content h3,
+  .post-content h4 {
+    @apply font-bold mt-8 mb-4;
+  }
+
+  .post-content h1 { @apply text-3xl; }
+  .post-content h2 { @apply text-2xl; }
+  .post-content h3 { @apply text-xl; }
+  .post-content h4 { @apply text-lg; }
+
+  .post-content p {
+    @apply my-4 leading-relaxed;
+  }
+
+  .post-content a {
+    @apply text-blue-500 dark:text-blue-400 hover:underline;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    @apply my-4 ml-8;
+  }
+
+  .post-content ul {
+    @apply list-disc;
+  }
+
+  .post-content ol {
+    @apply list-decimal;
+  }
+
+  .post-content li {
+    @apply my-2;
+  }
+
+  .post-content code {
+    @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm font-mono;
+  }
+
+  .post-content pre {
+    @apply bg-gray-900 text-gray-100 p-4 rounded-lg my-4 overflow-x-auto;
+  }
+
+  .post-content pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .post-content blockquote {
+    @apply border-l-4 border-gray-300 dark:border-gray-700 pl-4 italic my-4;
+  }
+
+  .post-content img {
+    @apply rounded-lg my-4;
+  }
+}

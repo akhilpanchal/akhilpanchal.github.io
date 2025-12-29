@@ -1,15 +1,7 @@
 ---
 title: "From Injury to Triumph: My Half Dome Redemption"
-date: 2022-10-30T02:41:16-07:00
-toc: false
-tags:
-    - redemption
-    - friendship
-    - kneeinjury
-    - hiking
-    - yosemite
-    - halfdome
-
+date: 2022-10-30
+tags: ["redemption", "friendship", "knee-injury", "hiking", "yosemite", "half-dome"]
 ---
 
 ### A Setback on Lion's Head

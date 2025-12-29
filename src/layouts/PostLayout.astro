@@ -1,0 +1,52 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  tags?: string[];
+  toc?: boolean;
+}
+
+const { title, date, tags, toc } = Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+}).format(date);
+---
+
+<BaseLayout title={title}>
+  <Header />
+  
+  <main class="flex-1 max-w-4xl mx-auto px-4 py-12 w-full">
+    <article>
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">{title}</h1>
+        
+        <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+          <time datetime={date.toISOString()}>{formattedDate}</time>
+          {tags && tags.length > 0 && (
+            <>
+              <span>•</span>
+              <div class="flex gap-2">
+                {tags.map((tag) => (
+                  <span class="text-blue-500 dark:text-blue-400">#{tag}</span>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </header>
+      
+      <div class="post-content prose prose-lg dark:prose-invert max-w-none">
+        <slot />
+      </div>
+    </article>
+  </main>
+  
+  <Footer />
+</BaseLayout>

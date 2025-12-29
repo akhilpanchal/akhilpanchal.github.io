@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+
+// Sort by date descending
+const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Blog Posts">
+  <Header />
+  
+  <main class="flex-1 max-w-4xl mx-auto px-4 py-12 w-full">
+    <h1 class="text-4xl font-bold mb-8">Blog</h1>
+    
+    <div class="space-y-0">
+      {sortedPosts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          date={post.data.date}
+          slug={`/posts/${post.slug}`}
+          tags={post.data.tags}
+        />
+      ))}
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>

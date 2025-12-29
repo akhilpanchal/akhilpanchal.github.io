@@ -4,18 +4,16 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
 import { getCollection } from 'astro:content';
+import { Button } from "@/components/ui/button"
 
 const allBlogPosts = await getCollection('blog');
 const allMusicPosts = await getCollection('music');
 
-// Sort by date descending
-const recentBlogPosts = allBlogPosts
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
-
-const recentMusicPosts = allMusicPosts
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 2);
+// Combine all posts and sort by date descending
+const allPosts = [
+  ...allBlogPosts.map(post => ({ ...post, type: 'blog' })),
+  ...allMusicPosts.map(post => ({ ...post, type: 'music' }))
+].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <BaseLayout>
@@ -29,64 +27,43 @@ const recentMusicPosts = allMusicPosts
         Software Engineer | Singer | Cycling Enthusiast
       </p>
       <div class="flex justify-center gap-4">
-        <a 
-          href="/posts" 
-          class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-        >
+        <Button size="lg" as="a" href="/posts">
           Read Blog
-        </a>
-        <a 
-          href="/music" 
-          class="px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-        >
+        </Button>
+        <Button size="lg" as="a" variant="outline" href="/music">
           Listen to Music
-        </a>
+        </Button>
       </div>
     </section>
     
-    <!-- Recent Blog Posts -->
-    <section class="mb-16">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-bold">Recent Posts</h2>
-        <a href="/posts" class="text-blue-500 dark:text-blue-400 hover:underline">
-          View all →
-        </a>
-      </div>
+    <!-- All Posts -->
+    <section>
+      <h2 class="text-3xl font-bold mb-6">All Posts</h2>
       
-      <div class="space-y-8">
-        {recentBlogPosts.map((post) => (
-          <PostCard
-            title={post.data.title}
-            date={post.data.date}
-            slug={`/posts/${post.slug}`}
-            tags={post.data.tags}
-          />
-        ))}
+      <div class="space-y-4">
+        {allPosts.map((post) => {
+          const slug = post.type === 'blog' ? `/posts/${post.slug}` : `/music/${post.slug}`;
+          return (
+            <article class="border-b border-gray-200 dark:border-gray-800 pb-4">
+              <a href={slug} class="block hover:opacity-80 transition-opacity">
+                <div class="flex gap-4 items-baseline">
+                  <time class="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                    {new Date(post.data.date).toLocaleDateString('en-US', { 
+                      year: 'numeric', 
+                      month: 'short', 
+                      day: 'numeric' 
+                    })}
+                  </time>
+                  <h3 class="text-lg font-medium hover:text-blue-500 dark:hover:text-blue-400">
+                    {post.data.title}
+                  </h3>
+                </div>
+              </a>
+            </article>
+          );
+        })}
       </div>
     </section>
-    
-    <!-- Recent Music Posts -->
-    {recentMusicPosts.length > 0 && (
-      <section>
-        <div class="flex justify-between items-center mb-6">
-          <h2 class="text-3xl font-bold">Recent Music</h2>
-          <a href="/music" class="text-blue-500 dark:text-blue-400 hover:underline">
-            View all →
-          </a>
-        </div>
-        
-        <div class="space-y-8">
-          {recentMusicPosts.map((post) => (
-            <PostCard
-              title={post.data.title}
-              date={post.data.date}
-              slug={`/music/${post.slug}`}
-              tags={post.data.tags}
-            />
-          ))}
-        </div>
-      </section>
-    )}
   </main>
   
   <Footer />

@@ -1,12 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout title="404 - Page Not Found">
-  <Header />
-  
   <main class="flex-1 max-w-4xl mx-auto px-4 py-16 w-full flex flex-col items-center justify-center">
     <h1 class="text-6xl font-bold mb-4">404</h1>
     <p class="text-2xl text-muted-foreground mb-8">Page not found</p>
@@ -17,6 +13,4 @@ import Footer from '../components/Footer.astro';
       Go Home
     </a>
   </main>
-  
-  <Footer />
 </BaseLayout>

@@ -1,12 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout title="About">
-  <Header />
-  
   <main class="flex-1 max-w-4xl mx-auto px-4 py-12 w-full">
     <article class="prose prose-lg dark:prose-invert max-w-none">
       <h1>About Me</h1>
@@ -34,6 +30,4 @@ import Footer from '../components/Footer.astro';
       </p>
     </article>
   </main>
-  
-  <Footer />
 </BaseLayout>

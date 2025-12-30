@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import PersistentVideoPlayer from '../components/PersistentVideoPlayer';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title?: string;
@@ -71,7 +74,12 @@ const siteTitle = title === 'Akhil Panchal' ? title : `${title} | Akhil Panchal`
   </head>
   <body class="transition-colors">
     <div class="min-h-screen flex flex-col">
+      <Header />
       <slot />
+      <Footer />
     </div>
+    
+    <!-- Persistent Video Player -->
+    <PersistentVideoPlayer client:only="react" />
   </body>
 </html>

@@ -1,10 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import PostCard from '../components/PostCard.astro';
 import { getCollection } from 'astro:content';
-import { Button } from "@/components/ui/button"
 
 const allBlogPosts = await getCollection('blog');
 const allMusicPosts = await getCollection('music');
@@ -17,8 +13,6 @@ const allPosts = [
 ---
 
 <BaseLayout>
-  <Header />
-  
   <main class="flex-1 max-w-4xl mx-auto px-4 py-16 w-full">
     <!-- Hero Section -->
     <section class="mb-16 text-center">
@@ -30,12 +24,12 @@ const allPosts = [
         Software Engineer | Singer | Runner
       </p>
       <div class="flex justify-center gap-4">
-        <Button size="lg" as="a" varian href="/posts">
+        <a href="/posts" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-8">
           Read Blog
-        </Button>
-        <Button size="lg" as="a" varian href="/music">
+        </a>
+        <a href="/music" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-8">
           Listen to Music
-        </Button>
+        </a>
       </div>
     </section>
     
@@ -68,6 +62,4 @@ const allPosts = [
       </div>
     </section>
   </main>
-  
-  <Footer />
 </BaseLayout>

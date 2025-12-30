@@ -1,33 +1,40 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import PostCard from '../../components/PostCard.astro';
-import { getCollection } from 'astro:content';
+import Discography from '../../components/Discography.astro';
+import { getOriginalSongs, getCoverSongs } from '../../data/discography';
 
-const allPosts = await getCollection('music');
-
-// Sort by date descending
-const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+// Get categorized videos
+const originalSongs = getOriginalSongs();
+const coverSongs = getCoverSongs();
 ---
 
 <BaseLayout title="Music">
-  <Header />
-  
   <main class="flex-1 max-w-4xl mx-auto px-4 py-12 w-full">
     <h1 class="text-4xl font-bold mb-8">Music</h1>
     
-    <div class="space-y-0">
-      {sortedPosts.map((post) => (
-        <PostCard
-          title={post.data.title}
-          date={post.data.date}
-          slug={`/music/${post.slug}`}
-          tags={post.data.tags}
-        />
-      ))}
+    <!-- Discography Section -->
+    <div class="mb-16">
+      <!-- Original Songs -->
+      {originalSongs.length > 0 && (
+        <div class="mb-12">
+          <Discography 
+            videos={originalSongs}
+            title="Originals"
+            description="Original music and collaborations"
+          />
+        </div>
+      )}
+      
+      <!-- Cover Songs -->
+      {coverSongs.length > 0 && (
+        <div class="mb-12">
+          <Discography 
+            videos={coverSongs}
+            title="Live Covers"
+            description="Live cover performances and tributes"
+          />
+        </div>
+      )}
     </div>
   </main>
-  
-  <Footer />
 </BaseLayout>

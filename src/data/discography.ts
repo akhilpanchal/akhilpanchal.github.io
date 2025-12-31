@@ -131,6 +131,13 @@ export const discographyData: YouTubeVideo[] = [
         category: 'cover',
         description: 'Live cover performance',
     },
+    {
+        videoId: "wPyR3OXJl3Q",
+        title: 'Bachana | Bilal Khan',
+        releaseDate: '2011-08-15',
+        category: 'cover',
+        description: 'Live cover with Yash Garg',
+    }
 ];
 
 // Helper functions to filter videos by category

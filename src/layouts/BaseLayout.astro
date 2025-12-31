@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import PersistentVideoPlayer from '../components/PersistentVideoPlayer';
+import PersistentMediaPlayer from '../components/players/PersistentMediaPlayer';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -79,7 +79,7 @@ const siteTitle = title === 'Akhil Panchal' ? title : `${title} | Akhil Panchal`
       <Footer />
     </div>
     
-    <!-- Persistent Video Player -->
-    <PersistentVideoPlayer client:only="react" />
+    <!-- Persistent Media Player -->
+    <PersistentMediaPlayer client:only="react" />
   </body>
 </html>

@@ -1,16 +1,9 @@
 ---
 import VideoCard from './VideoCard.astro';
-
-interface VideoData {
-  videoId: string;
-  title: string;
-  releaseDate?: Date | string;
-  description?: string;
-  category?: 'original' | 'cover';
-}
+import type { MediaTrack } from '../data/discography';
 
 interface Props {
-  videos: VideoData[];
+  videos: MediaTrack[];
   title?: string;
   description?: string;
   filter?: 'all' | 'original' | 'cover';

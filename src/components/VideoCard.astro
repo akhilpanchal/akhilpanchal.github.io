@@ -2,18 +2,24 @@
 import { Badge } from "@/components/ui/badge"
 import { Image } from 'astro:assets';
 
+type Platform = 'youtube' | 'soundcloud';
+
 interface Props {
-  videoId: string;
+  platform: Platform;
+  trackId: string;
   title: string;
   releaseDate?: Date | string;
   description?: string;
   category?: 'original' | 'cover';
+  thumbnailUrl?: string; // For SoundCloud tracks, fetched client-side if not provided
 }
 
-const { videoId, title, releaseDate, description, category } = Astro.props;
+const { platform, trackId, title, releaseDate, description, category, thumbnailUrl } = Astro.props;
 
 // Generate YouTube thumbnail URL (high quality)
-const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+const defaultThumbnailUrl = platform === 'youtube' 
+  ? `https://img.youtube.com/vi/${trackId}/hqdefault.jpg`
+  : thumbnailUrl || ''; // SoundCloud artwork will be fetched client-side
 
 // Format date if provided
 let formattedDate = '';
@@ -32,30 +38,43 @@ const categoryVariants = {
 };
 
 // Generate a unique ID for this card
-const cardId = `video-card-${videoId}`;
+const cardId = `track-card-${platform}-${trackId.replace(/[^a-zA-Z0-9]/g, '-')}`;
 ---
 
 <article 
-  class="video-card group rounded-lg border border-border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md" 
+  class="track-card group rounded-lg border border-border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md" 
   id={cardId}
-  data-video-id={videoId}
-  data-video-title={title}
+  data-platform={platform}
+  data-track-id={trackId}
+  data-track-title={title}
 >
   <button
     type="button"
-    class="video-card-button block w-full text-left cursor-pointer"
-    data-video-id={videoId}
-    data-video-title={title}
+    class="track-card-button block w-full text-left cursor-pointer"
+    data-platform={platform}
+    data-track-id={trackId}
+    data-track-title={title}
     aria-label={`Play ${title}`}
   >
     <!-- Thumbnail Container -->
     <div class="relative aspect-video overflow-hidden rounded-t-lg bg-muted">
-      <Image 
-        src={thumbnailUrl} 
-        alt={`${title} thumbnail`}
-        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        inferSize
-      />
+      {platform === 'youtube' ? (
+        <Image 
+          src={defaultThumbnailUrl} 
+          alt={`${title} thumbnail`}
+          class="track-thumbnail w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          inferSize
+        />
+      ) : (
+        <div 
+          class="track-thumbnail w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center"
+          data-soundcloud-url={trackId}
+        >
+          <svg class="w-16 h-16 text-white/30" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 17.939h-1v-8.068c.308-.231.639-.429 1-.566v8.634zm3 0h1v-9.224c-.229.265-.443.548-.621.857l-.379-.184v8.551zm-2 0h1v-8.848c-.508-.079-.623-.05-1-.01v8.858zm-4 0h1v-7.02c-.312.458-.555.971-.692 1.535l-.308-.182v5.667zm-3-5.25c-.606.547-1 1.354-1 2.268 0 .914.394 1.721 1 2.268v-4.536zm18.879-.671c-.204-2.837-2.404-5.079-5.117-5.079-1.022 0-1.964.328-2.762.877v10.123h9.089c1.607 0 2.911-1.393 2.911-3.106 0-2.233-2.168-3.772-4.121-2.815zm-16.879-.027c-.302-.024-.603-.050-.906-.050v6.048h1v-5.996l-.094-.002z"/>
+          </svg>
+        </div>
+      )}
       
       <!-- Play Button Overlay -->
       <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -78,6 +97,19 @@ const cardId = `video-card-${videoId}`;
           </Badge>
         </div>
       )}
+
+      <!-- Platform Icon Badge -->
+      <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm rounded-full p-1.5">
+        {platform === 'youtube' ? (
+          <svg class="w-4 h-4 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        ) : (
+          <svg class="w-4 h-4 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 17.939h-1v-8.068c.308-.231.639-.429 1-.566v8.634zm3 0h1v-9.224c-.229.265-.443.548-.621.857l-.379-.184v8.551zm-2 0h1v-8.848c-.508-.079-.623-.05-1-.01v8.858zm-4 0h1v-7.02c-.312.458-.555.971-.692 1.535l-.308-.182v5.667zm-3-5.25c-.606.547-1 1.354-1 2.268 0 .914.394 1.721 1 2.268v-4.536zm18.879-.671c-.204-2.837-2.404-5.079-5.117-5.079-1.022 0-1.964.328-2.762.877v10.123h9.089c1.607 0 2.911-1.393 2.911-3.106 0-2.233-2.168-3.772-4.121-2.815zm-16.879-.027c-.302-.024-.603-.050-.906-.050v6.048h1v-5.996l-.094-.002z"/>
+          </svg>
+        )}
+      </div>
     </div>
     
     <!-- Video Info -->
@@ -114,36 +146,73 @@ const cardId = `video-card-${videoId}`;
 </article>
 
 <script>
-  import { playVideo, subscribeToPlayerState, getPlayerState } from '../lib/videoPlayerState';
+  import { playTrack, subscribeToPlayerState, getPlayerState } from '../lib/mediaPlayerState';
 
-  // Handle video card clicks
-  function initializeVideoCards() {
-    const buttons = document.querySelectorAll('.video-card-button');
+  // Fetch SoundCloud artwork
+  async function fetchSoundCloudArtwork(url: string): Promise<string | null> {
+    try {
+      const response = await fetch(`https://soundcloud.com/oembed?url=${encodeURIComponent(url)}&format=json`);
+      const data = await response.json();
+      return data.thumbnail_url || null;
+    } catch (error) {
+      console.error('Error fetching SoundCloud artwork:', error);
+      return null;
+    }
+  }
+
+  // Handle track card clicks
+  function initializeTrackCards() {
+    const buttons = document.querySelectorAll('.track-card-button');
     
     buttons.forEach((button) => {
-      const videoId = button.getAttribute('data-video-id');
-      const videoTitle = button.getAttribute('data-video-title');
+      const platform = button.getAttribute('data-platform') as 'youtube' | 'soundcloud';
+      const trackId = button.getAttribute('data-track-id');
+      const trackTitle = button.getAttribute('data-track-title');
       
-      if (!videoId || !videoTitle) return;
+      if (!platform || !trackId || !trackTitle) return;
       
       button.addEventListener('click', (e) => {
         e.preventDefault();
-        playVideo(videoId, videoTitle);
+        // if (platform !== "soundcloud") {
+          playTrack(platform, trackId, trackTitle);
+        // }
       });
     });
+  }
+
+  // Load SoundCloud artwork for cards
+  async function loadSoundCloudArtwork() {
+    const soundcloudThumbnails = document.querySelectorAll('[data-soundcloud-url]');
+    
+    for (const thumbnail of soundcloudThumbnails) {
+      const url = thumbnail.getAttribute('data-soundcloud-url');
+      if (!url) continue;
+      
+      const artworkUrl = await fetchSoundCloudArtwork(url);
+      if (artworkUrl) {
+        // Replace the placeholder with actual artwork
+        const img = document.createElement('img');
+        img.src = artworkUrl;
+        img.alt = 'Track artwork';
+        img.className = 'w-full h-full object-cover';
+        thumbnail.innerHTML = '';
+        thumbnail.appendChild(img);
+      }
+    }
   }
 
   // Update "Now Playing" indicators
   function updateNowPlayingIndicators() {
     const state = getPlayerState();
-    const allCards = document.querySelectorAll('.video-card');
+    const allCards = document.querySelectorAll('.track-card');
     
     allCards.forEach((card) => {
-      const videoId = card.getAttribute('data-video-id');
+      const platform = card.getAttribute('data-platform');
+      const trackId = card.getAttribute('data-track-id');
       const indicator = card.querySelector('.now-playing-indicator');
       
       if (indicator) {
-        if (state.isOpen && state.currentVideoId === videoId) {
+        if (state.isOpen && state.platform === platform && state.currentTrackId === trackId) {
           indicator.classList.remove('hidden');
         } else {
           indicator.classList.add('hidden');
@@ -154,7 +223,8 @@ const cardId = `video-card-${videoId}`;
 
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', () => {
-    initializeVideoCards();
+    initializeTrackCards();
+    loadSoundCloudArtwork();
     updateNowPlayingIndicators();
     
     // Subscribe to state changes
@@ -165,13 +235,14 @@ const cardId = `video-card-${videoId}`;
 
   // Re-initialize after Astro view transitions
   document.addEventListener('astro:after-swap', () => {
-    initializeVideoCards();
+    initializeTrackCards();
+    loadSoundCloudArtwork();
     updateNowPlayingIndicators();
   });
 </script>
 
 <style>
-  .video-card {
+  .track-card {
     transition: all 0.3s ease;
   }
   
@@ -180,12 +251,12 @@ const cardId = `video-card-${videoId}`;
     transition: transform 0.3s ease;
   }
   
-  .video-card:hover .play-button-wrapper {
+  .track-card:hover .play-button-wrapper {
     transform: scale(1.1);
   }
   
   /* Ensures smooth image loading */
-  .video-thumbnail {
+  .track-thumbnail {
     will-change: transform;
   }
 </style>

@@ -1,36 +1,43 @@
 /**
- * Global Video Player State Management
+ * Global Media Player State Management
  * 
- * This module manages the persistent video player state across page navigations.
+ * This module manages the persistent media player state across page navigations.
+ * Supports both YouTube and SoundCloud platforms.
  * Uses browser localStorage and custom events for real-time synchronization.
  */
 
-export interface VideoPlayerState {
+export type Platform = 'youtube' | 'soundcloud';
+
+export interface MediaPlayerState {
   isOpen: boolean;
   isPlaying: boolean;
   isMinimized: boolean;
-  currentVideoId: string | null;
-  currentVideoTitle: string | null;
+  platform: Platform | null;
+  currentTrackId: string | null;
+  currentTrackTitle: string | null;
   currentTime?: number;
+  volume?: number; // 0-100
 }
 
-const STORAGE_KEY = 'video-player-state';
-const EVENT_NAME = 'video-player-state-change';
+const STORAGE_KEY = 'media-player-state';
+const EVENT_NAME = 'media-player-state-change';
 
 // Default state
-const defaultState: VideoPlayerState = {
+const defaultState: MediaPlayerState = {
   isOpen: false,
   isPlaying: false,
   isMinimized: false,
-  currentVideoId: null,
-  currentVideoTitle: null,
+  platform: null,
+  currentTrackId: null,
+  currentTrackTitle: null,
   currentTime: 0,
+  volume: 100,
 };
 
 /**
  * Get current player state from localStorage
  */
-export function getPlayerState(): VideoPlayerState {
+export function getPlayerState(): MediaPlayerState {
   if (typeof window === 'undefined') return defaultState;
   
   try {
@@ -48,7 +55,7 @@ export function getPlayerState(): VideoPlayerState {
 /**
  * Save player state to localStorage and notify listeners
  */
-export function setPlayerState(updates: Partial<VideoPlayerState>): void {
+export function setPlayerState(updates: Partial<MediaPlayerState>): void {
   if (typeof window === 'undefined') return;
   
   const currentState = getPlayerState();
@@ -70,12 +77,12 @@ export function setPlayerState(updates: Partial<VideoPlayerState>): void {
  * Subscribe to player state changes
  */
 export function subscribeToPlayerState(
-  callback: (state: VideoPlayerState) => void
+  callback: (state: MediaPlayerState) => void
 ): () => void {
   if (typeof window === 'undefined') return () => {};
   
   const handler = (event: Event) => {
-    const customEvent = event as CustomEvent<VideoPlayerState>;
+    const customEvent = event as CustomEvent<MediaPlayerState>;
     callback(customEvent.detail);
   };
   
@@ -86,16 +93,21 @@ export function subscribeToPlayerState(
 }
 
 /**
- * Play a new video
+ * Play a new track
  */
-export function playVideo(videoId: string, title: string): void {
+export function playTrack(platform: Platform, trackId: string, title: string): void {
+  // Get current volume before switching
+  const currentVolume = getPlayerState().volume || 100;
+  
   setPlayerState({
     isOpen: true,
     isPlaying: true,
     isMinimized: false,
-    currentVideoId: videoId,
-    currentVideoTitle: title,
+    platform,
+    currentTrackId: trackId,
+    currentTrackTitle: title,
     currentTime: 0,
+    volume: currentVolume, // Preserve volume
   });
 }
 
@@ -122,8 +134,9 @@ export function closePlayer(): void {
   setPlayerState({
     isOpen: false,
     isPlaying: false,
-    currentVideoId: null,
-    currentVideoTitle: null,
+    platform: null,
+    currentTrackId: null,
+    currentTrackTitle: null,
     currentTime: 0,
   });
 }
@@ -133,4 +146,11 @@ export function closePlayer(): void {
  */
 export function updateCurrentTime(time: number): void {
   setPlayerState({ currentTime: time });
+}
+
+/**
+ * Update volume (0-100)
+ */
+export function updateVolume(volume: number): void {
+  setPlayerState({ volume: Math.max(0, Math.min(100, volume)) });
 }

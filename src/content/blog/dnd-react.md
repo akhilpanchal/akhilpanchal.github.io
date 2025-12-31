@@ -1,10 +1,14 @@
 ---
 title: "Drag and Drop libraries in React.js"
+description: "An exploration of popular drag and drop libraries in the React ecosystem and how to choose the right one"
 date: 2021-01-16
+author: "Akhil Panchal"
+image:
+  url: "/maria-teneva.jpg"
+  alt: "A zig-zag road through the mountains"
 tags: ["react", "javascript", "dragdrop", "opensource", "react-dnd", "react-beautiful-dnd"]
 ---
 
-![Cover image](/maria-teneva.jpg)
 ##### Image Credits:&nbsp;[Maria Teneva](https://unsplash.com/@miteneva)
 
 In the world of React.js, there are some really amazing drag and drop libraries. Some of the popular ones are:

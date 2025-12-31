@@ -4,7 +4,13 @@ const blog = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    description: z.string().optional(),
     date: z.coerce.date(),
+    author: z.string().optional(),
+    image: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }).optional(),
     tags: z.array(z.string()).optional(),
     toc: z.boolean().optional().default(false),
     draft: z.boolean().optional().default(false),

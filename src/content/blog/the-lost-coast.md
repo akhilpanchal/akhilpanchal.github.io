@@ -1,12 +1,15 @@
 ---
 title: "The Call of the Lost Coast"
+description: "A three-day backpacking journey through Northern California's untouched wilderness, where nature strips away the noise of modern life"
 date: 2024-09-14
+author: "Akhil Panchal"
+image:
+  url: "https://lh3.googleusercontent.com/pw/AP1GczOBmjgJK1JvDP6bQoAZjThVB9O4_Mt2n5POd4zp9yVYTGc_p1nO54QYgXONVUUjqNjik5-MRqmpDEyn-g62eFTCtK5ER6rtd1D_59R2iWSbGLhKANnz4tEYjDGrai0XoNpKCXmSXiPNdmfIvhbACLJZLA=w1747-h1310-s-no-gm?authuser=0"
+  alt: "Picture of the Pacific Ocean and the mountains along the Lost Coast of California."
 tags: ["lost-coast", "chatgpt", "backpacking", "philosophy"]
 ---
 
 ### A Journey Beyond the Horizon
-
-![Cover image](https://lh3.googleusercontent.com/pw/AP1GczOBmjgJK1JvDP6bQoAZjThVB9O4_Mt2n5POd4zp9yVYTGc_p1nO54QYgXONVUUjqNjik5-MRqmpDEyn-g62eFTCtK5ER6rtd1D_59R2iWSbGLhKANnz4tEYjDGrai0XoNpKCXmSXiPNdmfIvhbACLJZLA=w1747-h1310-s-no-gm?authuser=0)
 
 
 [The Lost Coast Trail](https://en.wikipedia.org/wiki/Lost_Coast), a rugged 25-mile stretch of Northern California’s coastline, offers a rare glimpse into untouched wilderness. With no roads and only the ocean as a guide, hikers navigate rocky beaches and towering cliffs, leaving civilization far behind. This remote path is not just a hike, but an immersion into nature's raw beauty and power. It's not merely a place on the map; it’s a forgotten edge of the world. It’s the space where the Pacific’s roar meets an untamed land, and time dissolves into the pull of the tides. For two nights and three days, six friends, a dog named Zora, and I set foot upon this wild frontier, seeking both adventure and ourselves. What we found wasn’t just a coastline lost to modernity, but a part of ourselves that had been buried under the weight of routine and noise.

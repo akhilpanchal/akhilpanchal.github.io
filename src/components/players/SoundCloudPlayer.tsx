@@ -36,51 +36,34 @@ export default function SoundCloudPlayer({
     const iframe = iframeRef.current;
     if (!iframe) return;
 
-    // Only initialize if not already initialized
-    if (!widgetRef.current) {
-      widgetRef.current = window.SC.Widget(iframe);
+    widgetRef.current = window.SC.Widget(iframe);
 
-      widgetRef.current.bind(window.SC.Widget.Events.READY, () => {
-        isWidgetReady.current = true;
-        if (volume !== undefined) {
-          widgetRef.current.setVolume(volume / 100); // SoundCloud uses 0-1 range
-        }
+    widgetRef.current.bind(window.SC.Widget.Events.READY, () => {
+      isWidgetReady.current = true;
+      // Always set SoundCloud volume to 100%
+      widgetRef.current.setVolume(volume);
 
-        // Start playing
-        widgetRef.current.play();
-        onReady?.();
-      });
+      // Start playing
+      widgetRef.current.play();
+      onReady?.();
+    });
 
-      widgetRef.current.bind(window.SC.Widget.Events.PLAY, () => {
-        startTimeTracking();
-        onPlay?.();
-      });
+    widgetRef.current.bind(window.SC.Widget.Events.PLAY, () => {
+      startTimeTracking();
+      onPlay?.();
+    });
 
-      widgetRef.current.bind(window.SC.Widget.Events.PAUSE, () => {
-        stopTimeTracking();
-        onPause?.();
-      });
-    }
+    widgetRef.current.bind(window.SC.Widget.Events.PAUSE, () => {
+      stopTimeTracking();
+      onPause?.();
+    });
 
     return () => {
       stopTimeTracking();
+      isWidgetReady.current = false;
+      widgetRef.current = null;
     };
   }, [trackUrl]);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      stopTimeTracking();
-      if (widgetRef.current && isWidgetReady.current) {
-        try {
-          // Don't unbind - just pause
-          widgetRef.current.pause();
-        } catch (error) {
-          console.error('Error pausing SoundCloud widget:', error);
-        }
-      }
-    };
-  }, []);
 
   // Handle play/pause state changes
   useEffect(() => {
@@ -97,16 +80,7 @@ export default function SoundCloudPlayer({
     }
   }, [isPlaying]);
 
-  // Handle volume changes
-  useEffect(() => {
-    if (!widgetRef.current || !isWidgetReady.current || volume === undefined) return;
-
-    try {
-      widgetRef.current.setVolume(volume / 100); // SoundCloud uses 0-1 range
-    } catch (error) {
-      console.error('Error setting SoundCloud volume:', error);
-    }
-  }, [volume]);
+  // Volume is always set to 100% for SoundCloud (handled on init)
 
   const startTimeTracking = () => {
     stopTimeTracking();
@@ -114,14 +88,6 @@ export default function SoundCloudPlayer({
       if (widgetRef.current) {
         widgetRef.current.getPosition((position: number) => {
           updateCurrentTime(position / 1000); // SoundCloud returns milliseconds
-        });
-
-        // Sync volume
-        widgetRef.current.getVolume((currentVolume: number) => {
-          const volumePercent = currentVolume * 100;
-          if (Math.abs(volumePercent - (volume || 100)) > 1) {
-            updateVolume(volumePercent);
-          }
         });
       }
     }, 1000);

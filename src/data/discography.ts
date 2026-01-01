@@ -100,12 +100,12 @@ export const discographyData: MediaTrack[] = [
         title: 'Raat Bhar | Modern Love (Mumbai)',
         releaseDate: '2023-06-26',
         category: 'cover',
-        description: 'Live cover of the song from the series Modern Love Mumbai',
+        description: 'Live cover of a song from the series Modern Love (Mumbai)',
     },
     {
         platform: 'youtube',
         trackId: 'PGImj8-e45s',
-        title: 'O Meri Jaan | KK',
+        title: 'O Meri Jaan (Life in a Metro) | KK',
         releaseDate: '2023-06-01',
         category: 'cover',
         description: 'Live tribute to KK',
@@ -161,7 +161,7 @@ export const discographyData: MediaTrack[] = [
     {
         platform: 'soundcloud',
         trackId: 'https://soundcloud.com/akhilpanchal/khoon-chala-ft-akhil-panchal',
-        title: 'Khoon Chala - Akhil Panchal',
+        title: 'Khoon Chala (Rang De Basanti) | Mohit Chauhan',
         releaseDate: '2016-07-01',
         category: 'cover',
         description: 'Cover of the classic AR Rahman song',
@@ -195,6 +195,16 @@ export const discographyData: MediaTrack[] = [
         releaseDate: '2011-08-15',
         category: 'cover',
         description: 'Live cover with Yash Garg',
+    },
+
+    // 2008
+    {
+        platform: 'soundcloud',
+        trackId: 'https://soundcloud.com/akhilpanchal/meri-maa-akhil',
+        title: 'Meri Maa (Taare Zameen Par) | Shankar-Ehsaan-Loy',
+        releaseDate: '2008-05-01',
+        category: 'cover',
+        description: 'Karaoke Cover recorded on Audacity',
     }
 ];
 

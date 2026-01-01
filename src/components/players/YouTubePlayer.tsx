@@ -30,7 +30,10 @@ export default function YouTubePlayer({
 
   // Use shared time tracking hook
   const { startTracking, stopTracking } = useTimeTracking({
-    getTime: () => isPlayerReady.current ?playerRef.current?.getCurrentTime() : 0,
+    getTime: () =>
+      isPlayerReady.current && playerRef.current
+        ? playerRef.current.getCurrentTime()
+        : 0,
     onTimeUpdate: () => {
       // Sync volume when tracking time
       const currentVolume = playerRef.current?.getVolume();
@@ -81,7 +84,10 @@ export default function YouTubePlayer({
       isPlayerReady.current = false;
       playerRef.current = null;
     };
-  }, [videoId, startTracking, stopTracking, currentTime, volume, onReady, onPlay, onPause]);
+    // Intentionally only depend on video identity and lifecycle callbacks.
+    // Time and volume are handled by separate effects to avoid tearing down
+    // the player (and tracking interval) on every update.
+  }, [videoId, startTracking, stopTracking, onReady, onPlay, onPause]);
 
   // Handle play/pause state changes
   useEffect(() => {

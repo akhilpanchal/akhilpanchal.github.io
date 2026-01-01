@@ -64,8 +64,8 @@ export interface SoundCloudWidget {
   isPaused(callback: (paused: boolean) => void): void;
 }
 
-export interface SoundCloudWidgetAPI {
-  Widget: new (element: HTMLIFrameElement | string) => SoundCloudWidget;
+export interface SoundCloudWidgetConstructor {
+  new (element: HTMLIFrameElement | string): SoundCloudWidget;
   Events: {
     READY: string;
     PLAY: string;
@@ -75,6 +75,10 @@ export interface SoundCloudWidgetAPI {
     LOAD_PROGRESS: string;
     PLAY_PROGRESS: string;
   };
+}
+
+export interface SoundCloudWidgetAPI {
+  Widget: SoundCloudWidgetConstructor;
 }
 
 // Global window extensions

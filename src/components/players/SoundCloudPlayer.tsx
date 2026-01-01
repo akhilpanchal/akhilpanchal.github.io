@@ -35,7 +35,15 @@ export default function SoundCloudPlayer({
 
   // Initialize widget
   useEffect(() => {
-    if (typeof window === 'undefined' || !window.SC || !trackUrl) return;
+    if (
+      typeof window === 'undefined' ||
+      !window.SC ||
+      !window.SC.Widget ||
+      !window.SC.Widget.Events ||
+      !trackUrl
+    ) {
+      return;
+    }
 
     const iframe = iframeRef.current;
     if (!iframe) return;
@@ -43,9 +51,8 @@ export default function SoundCloudPlayer({
     try {
       widgetRef.current = new window.SC.Widget(iframe);
 
-      widgetRef.current.bind(window.SC.Events.READY, () => {
+      widgetRef.current.bind(window.SC.Widget.Events.READY, () => {
         isWidgetReady.current = true;
-        // Always set SoundCloud volume to 100%
         widgetRef.current?.setVolume(volume);
 
         // Start playing
@@ -53,12 +60,12 @@ export default function SoundCloudPlayer({
         onReady?.();
       });
 
-      widgetRef.current.bind(window.SC.Events.PLAY, () => {
+      widgetRef.current.bind(window.SC.Widget.Events.PLAY, () => {
         startTracking();
         onPlay?.();
       });
 
-      widgetRef.current.bind(window.SC.Events.PAUSE, () => {
+      widgetRef.current.bind(window.SC.Widget.Events.PAUSE, () => {
         stopTracking();
         onPause?.();
       });

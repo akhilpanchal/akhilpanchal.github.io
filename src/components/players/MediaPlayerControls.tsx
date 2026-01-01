@@ -1,5 +1,5 @@
-import { togglePlayPause, toggleMinimize, closePlayer } from '../../lib/mediaPlayerState';
-import { Play, Pause, Minimize2, Maximize2, X } from 'lucide-react';
+import { toggleMinimize, closePlayer } from '../../lib/mediaPlayerState';
+import { Minimize2, Maximize2, X } from 'lucide-react';
 
 interface MediaPlayerControlsProps {
   title: string;
@@ -11,7 +11,6 @@ interface MediaPlayerControlsProps {
 export default function MediaPlayerControls({
   title,
   platform,
-  isPlaying,
   isMinimized,
 }: MediaPlayerControlsProps) {
   return (

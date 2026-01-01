@@ -24,15 +24,6 @@ export default function MediaPlayerControls({
       </div>
 
       <div className="flex items-center gap-2 ml-2">
-        {/* Play/Pause Button */}
-        <button
-          onClick={togglePlayPause}
-          className="p-1.5 hover:bg-muted rounded transition-colors"
-          aria-label={isPlaying ? 'Pause' : 'Play'}
-        >
-          {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-        </button>
-
         {/* Minimize/Maximize Button */}
         <button
           onClick={toggleMinimize}

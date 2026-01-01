@@ -98,18 +98,21 @@ export function subscribeToPlayerState(
  * Play a new track
  */
 export function playTrack(platform: Platform, trackId: string, title: string): void {
-  // Get current volume before switching
-  const currentVolume = getPlayerState().volume || 100;
+  // Get current state before switching
+  const currentState = getPlayerState();
+  const currentVolume =
+    typeof currentState.volume === 'number' ? currentState.volume : 100;
   
   setPlayerState({
     isOpen: true,
     isPlaying: true,
-    isMinimized: false,
+    // Preserve minimized state so new tracks respect the user's preference
+    isMinimized: currentState.isMinimized,
     platform,
     currentTrackId: trackId,
     currentTrackTitle: title,
     currentTime: 0,
-    volume: currentVolume, // Preserve volume
+    volume: currentVolume, // Preserve volume (including mute at 0)
   });
 }
 
@@ -136,6 +139,7 @@ export function closePlayer(): void {
   setPlayerState({
     isOpen: false,
     isPlaying: false,
+    isMinimized: false,
     platform: null,
     currentTrackId: null,
     currentTrackTitle: null,

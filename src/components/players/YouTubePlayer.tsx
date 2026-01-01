@@ -30,7 +30,7 @@ export default function YouTubePlayer({
 
   // Use shared time tracking hook
   const { startTracking, stopTracking } = useTimeTracking({
-    getTime: () => playerRef.current?.getCurrentTime() ?? 0,
+    getTime: () => isPlayerReady.current ?playerRef.current?.getCurrentTime() : 0,
     onTimeUpdate: () => {
       // Sync volume when tracking time
       const currentVolume = playerRef.current?.getVolume();

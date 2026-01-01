@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Button } from '@/components/ui/button';
 
 // Funny 404 messages organized by category with emojis
-const messageCategories = {
+const messageCategories: Record<'🎵' | '💻' | '🥾', string[]> = {
   '🎵': [
     "Looks like this page hit a wrong note",
     "This page is lost. Just like my guitar pick",
@@ -28,7 +28,7 @@ const messageCategories = {
 };
 
 // Randomly select a category (emoji)
-const categories = Object.keys(messageCategories);
+const categories = Object.keys(messageCategories) as (keyof typeof messageCategories)[];
 const randomEmoji = categories[Math.floor(Math.random() * categories.length)];
 
 // Randomly select a message from that category

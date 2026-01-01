@@ -1,13 +1,5 @@
 import { useState, useEffect } from 'react';
 
-declare global {
-  interface Window {
-    YT: any;
-    onYouTubeIframeAPIReady: () => void;
-    SC: any;
-  }
-}
-
 /**
  * Hook to load YouTube IFrame API
  */

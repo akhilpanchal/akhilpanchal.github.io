@@ -1,4 +1,6 @@
 ---
+import { formatDateShort } from '@/lib/utils';
+
 interface Props {
   title: string;
   date: Date;
@@ -9,11 +11,7 @@ interface Props {
 
 const { title, date, slug, tags, excerpt } = Astro.props;
 
-const formattedDate = new Intl.DateTimeFormat('en-US', {
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
-}).format(date);
+const formattedDate = formatDateShort(date);
 ---
 
 <article class="border-b border-border pb-8 mb-8 last:border-b-0">

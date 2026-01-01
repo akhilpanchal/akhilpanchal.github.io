@@ -1,6 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import { calculateReadingTime } from '@/lib/utils';
+import { calculateReadingTime, formatDateLong } from '@/lib/utils';
 
 interface Props {
   title: string;
@@ -18,11 +18,7 @@ interface Props {
 const { title, description, date, author, image, tags, content } = Astro.props;
 
 
-const formattedDate = new Intl.DateTimeFormat('en-US', {
-  month: 'long',
-  day: 'numeric',
-  year: 'numeric',
-}).format(date);
+const formattedDate = formatDateLong(date);
 
 // Calculate reading time if content is provided
 const readingTime = content ? calculateReadingTime(content) : null;

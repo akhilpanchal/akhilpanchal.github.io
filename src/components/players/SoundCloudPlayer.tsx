@@ -1,11 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { updateCurrentTime } from '../../lib/mediaPlayerState';
-
-declare global {
-  interface Window {
-    SC: any;
-  }
-}
+import { logError } from '../../lib/utils';
+import { useTimeTracking } from './useTimeTracking';
+import type { SoundCloudWidget } from '../../types/player';
 
 interface SoundCloudPlayerProps {
   trackUrl: string;
@@ -24,10 +20,18 @@ export default function SoundCloudPlayer({
   onPlay,
   onPause,
 }: SoundCloudPlayerProps) {
-  const widgetRef = useRef<any>(null);
-  const timeUpdateIntervalRef = useRef<number | null>(null);
+  const widgetRef = useRef<SoundCloudWidget | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const isWidgetReady = useRef(false);
+
+  // Use shared time tracking hook
+  const { startTracking, stopTracking } = useTimeTracking({
+    getTime: () => new Promise<number>((resolve) => {
+      widgetRef.current?.getPosition((position: number) => {
+        resolve(position / 1000); // SoundCloud returns milliseconds
+      });
+    }),
+  });
 
   // Initialize widget
   useEffect(() => {
@@ -36,34 +40,38 @@ export default function SoundCloudPlayer({
     const iframe = iframeRef.current;
     if (!iframe) return;
 
-    widgetRef.current = window.SC.Widget(iframe);
+    try {
+      widgetRef.current = new window.SC.Widget(iframe);
 
-    widgetRef.current.bind(window.SC.Widget.Events.READY, () => {
-      isWidgetReady.current = true;
-      // Always set SoundCloud volume to 100%
-      widgetRef.current.setVolume(volume);
+      widgetRef.current.bind(window.SC.Events.READY, () => {
+        isWidgetReady.current = true;
+        // Always set SoundCloud volume to 100%
+        widgetRef.current?.setVolume(volume);
 
-      // Start playing
-      widgetRef.current.play();
-      onReady?.();
-    });
+        // Start playing
+        widgetRef.current?.play();
+        onReady?.();
+      });
 
-    widgetRef.current.bind(window.SC.Widget.Events.PLAY, () => {
-      startTimeTracking();
-      onPlay?.();
-    });
+      widgetRef.current.bind(window.SC.Events.PLAY, () => {
+        startTracking();
+        onPlay?.();
+      });
 
-    widgetRef.current.bind(window.SC.Widget.Events.PAUSE, () => {
-      stopTimeTracking();
-      onPause?.();
-    });
+      widgetRef.current.bind(window.SC.Events.PAUSE, () => {
+        stopTracking();
+        onPause?.();
+      });
+    } catch (error) {
+      logError('SoundCloudPlayer initialization', error);
+    }
 
     return () => {
-      stopTimeTracking();
+      stopTracking();
       isWidgetReady.current = false;
       widgetRef.current = null;
     };
-  }, [trackUrl]);
+  }, [trackUrl, volume, startTracking, stopTracking, onReady, onPlay, onPause]);
 
   // Handle play/pause state changes
   useEffect(() => {
@@ -76,29 +84,11 @@ export default function SoundCloudPlayer({
         widgetRef.current.pause();
       }
     } catch (error) {
-      console.error('Error controlling SoundCloud player:', error);
+      logError('SoundCloud player control', error);
     }
   }, [isPlaying]);
 
   // Volume is always set to 100% for SoundCloud (handled on init)
-
-  const startTimeTracking = () => {
-    stopTimeTracking();
-    timeUpdateIntervalRef.current = window.setInterval(() => {
-      if (widgetRef.current) {
-        widgetRef.current.getPosition((position: number) => {
-          updateCurrentTime(position / 1000); // SoundCloud returns milliseconds
-        });
-      }
-    }, 1000);
-  };
-
-  const stopTimeTracking = () => {
-    if (timeUpdateIntervalRef.current) {
-      clearInterval(timeUpdateIntervalRef.current);
-      timeUpdateIntervalRef.current = null;
-    }
-  };
 
   const embedUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(
     trackUrl

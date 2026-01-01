@@ -6,6 +6,8 @@
  * Uses browser localStorage and custom events for real-time synchronization.
  */
 
+import { logError, isValidNumber } from './utils';
+
 export type Platform = 'youtube' | 'soundcloud';
 
 export interface MediaPlayerState {
@@ -46,7 +48,7 @@ export function getPlayerState(): MediaPlayerState {
       return { ...defaultState, ...JSON.parse(stored) };
     }
   } catch (error) {
-    console.error('Error reading player state:', error);
+    logError('mediaPlayerState.getPlayerState', error);
   }
   
   return defaultState;
@@ -69,7 +71,7 @@ export function setPlayerState(updates: Partial<MediaPlayerState>): void {
       detail: newState 
     }));
   } catch (error) {
-    console.error('Error saving player state:', error);
+    logError('mediaPlayerState.setPlayerState', error);
   }
 }
 
@@ -152,5 +154,9 @@ export function updateCurrentTime(time: number): void {
  * Update volume (0-100)
  */
 export function updateVolume(volume: number): void {
+  if (!isValidNumber(volume)) {
+    logError('mediaPlayerState.updateVolume', new Error(`Invalid volume: ${volume}`));
+    return;
+  }
   setPlayerState({ volume: Math.max(0, Math.min(100, volume)) });
 }

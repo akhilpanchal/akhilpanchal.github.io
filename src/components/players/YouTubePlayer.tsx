@@ -1,11 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { updateCurrentTime, updateVolume } from '../../lib/mediaPlayerState';
-
-declare global {
-  interface Window {
-    YT: any;
-  }
-}
+import { updateVolume } from '../../lib/mediaPlayerState';
+import { logError } from '../../lib/utils';
+import { useTimeTracking } from './useTimeTracking';
+import type { YouTubePlayer, YouTubePlayerEvent } from '../../types/player';
+import { YouTubePlayerState } from '../../types/player';
 
 interface YouTubePlayerProps {
   videoId: string;
@@ -26,10 +24,21 @@ export default function YouTubePlayer({
   onPlay,
   onPause,
 }: YouTubePlayerProps) {
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<YouTubePlayer | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const timeUpdateIntervalRef = useRef<number | null>(null);
   const isPlayerReady = useRef(false);
+
+  // Use shared time tracking hook
+  const { startTracking, stopTracking } = useTimeTracking({
+    getTime: () => playerRef.current?.getCurrentTime() ?? 0,
+    onTimeUpdate: () => {
+      // Sync volume when tracking time
+      const currentVolume = playerRef.current?.getVolume();
+      if (currentVolume !== undefined && currentVolume !== volume) {
+        updateVolume(currentVolume);
+      }
+    },
+  });
 
   // Initialize player
   useEffect(() => {
@@ -38,37 +47,41 @@ export default function YouTubePlayer({
     const iframe = iframeRef.current;
     if (!iframe) return;
 
-    // YouTube API requires the iframe to have an id
-    playerRef.current = new window.YT.Player(iframe, {
-      events: {
-        onReady: (event: any) => {
-          isPlayerReady.current = true;
-          if (currentTime) {
-            event.target.seekTo(currentTime);
-          }
-          if (volume !== undefined) {
-            event.target.setVolume(volume);
-          }
-          onReady?.();
+    try {
+      // YouTube API requires the iframe to have an id
+      playerRef.current = new window.YT.Player(iframe, {
+        events: {
+          onReady: (event: YouTubePlayerEvent) => {
+            isPlayerReady.current = true;
+            if (currentTime) {
+              event.target.seekTo(currentTime);
+            }
+            if (volume !== undefined) {
+              event.target.setVolume(volume);
+            }
+            onReady?.();
+          },
+          onStateChange: (event: YouTubePlayerEvent) => {
+            if (event.data === YouTubePlayerState.PLAYING) {
+              startTracking();
+              onPlay?.();
+            } else if (event.data === YouTubePlayerState.PAUSED) {
+              stopTracking();
+              onPause?.();
+            }
+          },
         },
-        onStateChange: (event: any) => {
-          if (event.data === 1) {
-            startTimeTracking();
-            onPlay?.();
-          } else if (event.data === 2) {
-            stopTimeTracking();
-            onPause?.();
-          }
-        },
-      },
-    });
+      });
+    } catch (error) {
+      logError('YouTubePlayer initialization', error);
+    }
 
     return () => {
-      stopTimeTracking();
+      stopTracking();
       isPlayerReady.current = false;
       playerRef.current = null;
     };
-  }, [videoId]);
+  }, [videoId, startTracking, stopTracking, currentTime, volume, onReady, onPlay, onPause]);
 
   // Handle play/pause state changes
   useEffect(() => {
@@ -81,7 +94,7 @@ export default function YouTubePlayer({
         playerRef.current.pauseVideo();
       }
     } catch (error) {
-      console.error('Error controlling YouTube player:', error);
+      logError('YouTube player control', error);
     }
   }, [isPlaying]);
 
@@ -92,32 +105,9 @@ export default function YouTubePlayer({
     try {
       playerRef.current.setVolume(volume);
     } catch (error) {
-      console.error('Error setting YouTube volume:', error);
+      logError('YouTube volume control', error);
     }
   }, [volume]);
-
-  const startTimeTracking = () => {
-    stopTimeTracking();
-    timeUpdateIntervalRef.current = window.setInterval(() => {
-      if (playerRef.current && playerRef.current.getCurrentTime) {
-        const currentTime = playerRef.current.getCurrentTime();
-        updateCurrentTime(currentTime);
-
-        // Sync volume
-        const currentVolume = playerRef.current.getVolume();
-        if (currentVolume !== undefined && currentVolume !== volume) {
-          updateVolume(currentVolume);
-        }
-      }
-    }, 1000);
-  };
-
-  const stopTimeTracking = () => {
-    if (timeUpdateIntervalRef.current) {
-      clearInterval(timeUpdateIntervalRef.current);
-      timeUpdateIntervalRef.current = null;
-    }
-  };
 
   // Generate YouTube embed URL - React will create fresh iframe when videoId changes
   const embedUrl = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&modestbranding=1&rel=0`;

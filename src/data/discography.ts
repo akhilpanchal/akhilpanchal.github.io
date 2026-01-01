@@ -11,38 +11,44 @@ export interface MediaTrack {
 
 // Akhil Panchal - Complete Discography
 export const discographyData: MediaTrack[] = [
-    // Original Singles & Featured Performances
+    // ORIGINAL SONGS (Reverse Chronological)
+    
+    // 2023
     {
         platform: 'youtube',
         trackId: 'nTp8q9kKF4k',
         title: 'Aankhein (feat. Akhil Panchal)',
-        releaseDate: '2023',
+        releaseDate: '2023-06-10',
         category: 'original',
-        description: 'Original Single with Partha Bhattacharya',
+        description: 'From the album \'Tranquil Bunker\' with Partha Bhattacharya',
     },
     {
         platform: 'youtube',
         trackId: 'QAPO1Sfwkv4',
         title: 'Lamha (feat. Akhil Panchal)',
-        releaseDate: '2023',
+        releaseDate: '2023-06-10',
         category: 'original',
-        description: 'Original Single with Partha Bhattacharya',
+        description: 'From the album \'Tranquil Bunker\' with Partha Bhattacharya',
     },
+
+    // 2019
     {
         platform: 'youtube',
         trackId: 'oamFEtoyGwY',
         title: 'Jeena Sikha Hai',
         releaseDate: '2019-11-03',
         category: 'original',
-        description: 'Original single with Kushal Bharatia',
+        description: 'Single with Kushal Bharatia',
     },
+
+    // 2013
     {
         platform: 'youtube',
         trackId: 'TaDn4ObiEa8',
         title: 'Mujhe Nahi Pata (feat. Akhil Panchal)',
         releaseDate: '2013-07-08',
         category: 'original',
-        description: 'Original Single with Partha Bhattacharya',
+        description: 'From the album \'Sunburnt Psyche\' with Partha Bhattacharya',
     },
     {
         platform: 'youtube',
@@ -50,7 +56,7 @@ export const discographyData: MediaTrack[] = [
         title: 'Izhaar (feat. Akhil Panchal)',
         releaseDate: '2013-07-08',
         category: 'original',
-        description: 'Original Single with Partha Bhattacharya',
+        description: 'From the album \'Sunburnt Psyche\' with Partha Bhattacharya',
     },
     {
         platform: 'youtube',
@@ -58,7 +64,7 @@ export const discographyData: MediaTrack[] = [
         title: 'Judaa (feat. Akhil Panchal)',
         releaseDate: '2013-07-08',
         category: 'original',
-        description: 'Original Single with Partha Bhattacharya',
+        description: 'From the album \'Sunburnt Psyche\' with Partha Bhattacharya',
     },
     {
         platform: 'youtube',
@@ -66,7 +72,7 @@ export const discographyData: MediaTrack[] = [
         title: 'Jaane Kyun (feat. Akhil Panchal)',
         releaseDate: '2013-07-08',
         category: 'original',
-        description: 'Original Single with Partha Bhattacharya',
+        description: 'From the album \'Sunburnt Psyche\' with Partha Bhattacharya',
     },
     {
         platform: 'youtube',
@@ -74,100 +80,114 @@ export const discographyData: MediaTrack[] = [
         title: 'Anjaan (feat. Akhil Panchal)',
         releaseDate: '2013-07-08',
         category: 'original',
-        description: 'Original Single with Partha Bhattacharya',
+        description: 'From the album \'Sunburnt Psyche\' with Partha Bhattacharya',
     },
 
-    // SoundCloud Tracks
-    {
-        platform: 'soundcloud',
-        trackId: 'https://soundcloud.com/akhilpanchal/nindiya-re-akhil',
-        title: 'Nindiya Re - Akhil',
-        releaseDate: '2024',
-        category: 'cover',
-        description: 'Cover of the classic song',
-    },
-    {
-        platform: 'soundcloud',
-        trackId: 'https://soundcloud.com/akhilpanchal/khoon-chala-ft-akhil-panchal',
-        title: 'Khoon Chala - Akhil Panchal',
-        releaseDate: '2024',
-        category: 'cover',
-        description: 'Cover of the classic song',
-    },
-
-    // Live Cover Videos
-    {
-        platform: 'youtube',
-        trackId: 'PQ03BNW8bG8',
-        title: 'Hasi Khanakti Hui | Extinguished Happiness',
-        releaseDate: '2023',
-        category: 'cover',
-        description: 'Live cover performance',
-    },
-    {
-        platform: 'youtube',
-        trackId: 'dr_KTXmuNQQ',
-        title: 'Arijit Singh Medley Cover',
-        releaseDate: '2015',
-        category: 'cover',
-        description: 'Live at SyracuseU Grad School Diwali Celebration',
-    },
+    // COVER SONGS (Reverse Chronological)
+    
+    // 2023
     {
         platform: 'youtube',
         trackId: 'yHJ9EqSk8ZI',
         title: 'Tu Bhula Jise - Airlift | KK',
-        releaseDate: '2023',
+        releaseDate: '2023-10-08',
         category: 'cover',
         description: 'Live cover of KK\'s classic',
     },
     {
         platform: 'youtube',
-        trackId: 'EeYErBuUPFQ',
-        title: 'Mujhe Nahi Pata',
-        releaseDate: '2023',
-        category: 'cover',
-        description: 'Live cover with Partha Bhattacharya',
-    },
-    {
-        platform: 'youtube',
         trackId: 'fH440aqGkMQ',
-        title: 'Raat Bhar - Modern Love',
-        releaseDate: '2023',
+        title: 'Raat Bhar | Modern Love (Mumbai)',
+        releaseDate: '2023-06-26',
         category: 'cover',
-        description: 'Vishal Bharadwaj | Meiyang Chang cover',
+        description: 'Live cover of the song from the series Modern Love Mumbai',
     },
     {
         platform: 'youtube',
         trackId: 'PGImj8-e45s',
         title: 'O Meri Jaan | KK',
-        releaseDate: '2023',
+        releaseDate: '2023-06-01',
         category: 'cover',
         description: 'Live tribute to KK',
     },
     {
         platform: 'youtube',
+        trackId: 'EeYErBuUPFQ',
+        title: 'Mujhe Nahi Pata | Casual Jam',
+        releaseDate: '2023-04-29',
+        category: 'cover',
+        description: 'Live Jam with Partha Bhattacharya',
+    },
+
+    // 2022
+    {
+        platform: 'youtube',
         trackId: 'gx36TIKeFNk',
         title: 'Kabhi | Abbas Ali Khan',
-        releaseDate: '2023',
+        releaseDate: '2022-05-28',
         category: 'cover',
-        description: 'Live cover performance',
+        description: 'Live cover of Abbas Ali Khan\'s classic',
     },
     {
         platform: 'youtube',
         trackId: 'qPIzNCA5BeY',
         title: 'Ik Aarzu | Jal The Band',
-        releaseDate: '2023',
+        releaseDate: '2022-04-15',
         category: 'cover',
         description: 'Live cover with Partha Bhattacharya',
     },
+
+    // 2020
     {
         platform: 'youtube',
         trackId: '__wW0hYPwYw',
         title: 'Dheere Se | The Yellow Diary',
-        releaseDate: '2023',
+        releaseDate: '2020-02-14',
         category: 'cover',
         description: 'Live cover performance',
     },
+
+    // 2017
+    {
+        platform: 'youtube',
+        trackId: 'PQ03BNW8bG8',
+        title: 'Hasi Khanakti Hui | Extinguished Happiness',
+        releaseDate: '2017-02-01',
+        category: 'cover',
+        description: 'Live cover performance of an old track from a Daily Soap from Pakistan',
+    },
+
+    // 2016
+    {
+        platform: 'soundcloud',
+        trackId: 'https://soundcloud.com/akhilpanchal/khoon-chala-ft-akhil-panchal',
+        title: 'Khoon Chala - Akhil Panchal',
+        releaseDate: '2016-07-01',
+        category: 'cover',
+        description: 'Cover of the classic AR Rahman song',
+    },
+
+    // 2015
+    {
+        platform: 'youtube',
+        trackId: 'dr_KTXmuNQQ',
+        title: 'Arijit Singh Medley + Maeri (Euphoria)',
+        releaseDate: '2015-10-01',
+        category: 'cover',
+        description: 'Live at Syracuse University Grad School Diwali Celebration',
+    },
+
+    // 2012
+    {
+        platform: 'soundcloud',
+        trackId: 'https://soundcloud.com/akhilpanchal/nindiya-re-akhil',
+        title: 'Nindiya Re (Coke Studio) | Kavish',
+        releaseDate: '2012-06-01',
+        category: 'cover',
+        description: 'Cover with Kushal Bharatia',
+    },
+
+    // 2011
     {
         platform: 'youtube',
         trackId: "wPyR3OXJl3Q",

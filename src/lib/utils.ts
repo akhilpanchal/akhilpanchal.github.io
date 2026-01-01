@@ -31,3 +31,50 @@ export function calculateReadingTime(content: string, wordsPerMinute: number = 2
   
   return Math.max(1, readingTime);
 }
+
+/**
+ * Format a date in short format (e.g., "Jan 15, 2024")
+ */
+export function formatDateShort(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(date);
+}
+
+/**
+ * Format a date in long format (e.g., "January 15, 2024")
+ */
+export function formatDateLong(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(date);
+}
+
+/**
+ * Format a date for month and year only (e.g., "Jan 2024")
+ */
+export function formatDateMonthYear(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    year: 'numeric',
+  }).format(date);
+}
+
+/**
+ * Safe error logger that handles different error types
+ */
+export function logError(context: string, error: unknown): void {
+  const message = error instanceof Error ? error.message : String(error);
+  console.error(`[${context}] ${message}`, error);
+}
+
+/**
+ * Validates if a value is a finite number
+ */
+export function isValidNumber(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
+}

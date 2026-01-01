@@ -1,6 +1,7 @@
 ---
 import { Badge } from "@/components/ui/badge"
 import { Image } from 'astro:assets';
+import { formatDateMonthYear } from '@/lib/utils';
 
 type Platform = 'youtube' | 'soundcloud';
 
@@ -25,10 +26,7 @@ const defaultThumbnailUrl = platform === 'youtube'
 let formattedDate = '';
 if (releaseDate) {
   const date = releaseDate instanceof Date ? releaseDate : new Date(releaseDate);
-  formattedDate = new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    year: 'numeric',
-  }).format(date);
+  formattedDate = formatDateMonthYear(date);
 }
 
 // Category badge variants
@@ -67,12 +65,13 @@ const cardId = `track-card-${platform}-${trackId.replace(/[^a-zA-Z0-9]/g, '-')}`
         />
       ) : (
         <div 
-          class="track-thumbnail w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center"
+          class="track-thumbnail w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 bg-linear-to-br from-orange-500 to-orange-700 flex flex-col items-center justify-center gap-3"
           data-soundcloud-url={trackId}
         >
-          <svg class="w-16 h-16 text-white/30" viewBox="0 0 24 24" fill="currentColor">
+          <svg class="w-20 h-20 text-white" viewBox="0 0 24 24" fill="currentColor">
             <path d="M7 17.939h-1v-8.068c.308-.231.639-.429 1-.566v8.634zm3 0h1v-9.224c-.229.265-.443.548-.621.857l-.379-.184v8.551zm-2 0h1v-8.848c-.508-.079-.623-.05-1-.01v8.858zm-4 0h1v-7.02c-.312.458-.555.971-.692 1.535l-.308-.182v5.667zm-3-5.25c-.606.547-1 1.354-1 2.268 0 .914.394 1.721 1 2.268v-4.536zm18.879-.671c-.204-2.837-2.404-5.079-5.117-5.079-1.022 0-1.964.328-2.762.877v10.123h9.089c1.607 0 2.911-1.393 2.911-3.106 0-2.233-2.168-3.772-4.121-2.815zm-16.879-.027c-.302-.024-.603-.050-.906-.050v6.048h1v-5.996l-.094-.002z"/>
           </svg>
+          <span class="text-white text-sm font-bold tracking-wider">SOUNDCLOUD</span>
         </div>
       )}
       
@@ -147,15 +146,23 @@ const cardId = `track-card-${platform}-${trackId.replace(/[^a-zA-Z0-9]/g, '-')}`
 
 <script>
   import { playTrack, subscribeToPlayerState, getPlayerState } from '../lib/mediaPlayerState';
+  import { logError } from '../lib/utils';
 
   // Fetch SoundCloud artwork
   async function fetchSoundCloudArtwork(url: string): Promise<string | null> {
     try {
       const response = await fetch(`https://soundcloud.com/oembed?url=${encodeURIComponent(url)}&format=json`);
       const data = await response.json();
-      return data.thumbnail_url || null;
+      const thumbnailUrl = data.thumbnail_url;
+      
+      // Check if it's the placeholder image - if so, return null to keep our gradient
+      if (thumbnailUrl && thumbnailUrl.includes('fb_placeholder.png')) {
+        return null;
+      }
+      
+      return thumbnailUrl || null;
     } catch (error) {
-      console.error('Error fetching SoundCloud artwork:', error);
+      logError('VideoCard.fetchSoundCloudArtwork', error);
       return null;
     }
   }
@@ -173,9 +180,7 @@ const cardId = `track-card-${platform}-${trackId.replace(/[^a-zA-Z0-9]/g, '-')}`
       
       button.addEventListener('click', (e) => {
         e.preventDefault();
-        // if (platform !== "soundcloud") {
-          playTrack(platform, trackId, trackTitle);
-        // }
+        playTrack(platform, trackId, trackTitle);
       });
     });
   }

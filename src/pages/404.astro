@@ -1,16 +1,66 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Button } from '@/components/ui/button';
+
+// Funny 404 messages organized by category with emojis
+const messageCategories = {
+  '🎵': [
+    "Looks like this page hit a wrong note",
+    "This page is lost. Just like my guitar pick",
+    "This URL is out of tune",
+    "Couldn't find this page in my setlist",
+    "Page went on tour and never came back"
+  ],
+  '💻': [
+    "This page is taking a coffee break",
+    "Have you tried turning it off and on again?",
+    "This page is probably stuck in a merge conflict",
+    "At least it's not a 500 error, right?",
+    "This page called in sick today"
+  ],
+  '🥾': [
+    "Looks like this page wandered off-trail",
+    "Lost somewhere on Mount Whitney",
+    "Wrong turn at the trailhead",
+    "Off the beaten path... way off",
+    "This page is still summiting"
+  ]
+};
+
+// Randomly select a category (emoji)
+const categories = Object.keys(messageCategories);
+const randomEmoji = categories[Math.floor(Math.random() * categories.length)];
+
+// Randomly select a message from that category
+const categoryMessages = messageCategories[randomEmoji];
+const randomMessage = categoryMessages[Math.floor(Math.random() * categoryMessages.length)];
 ---
 
 <BaseLayout title="404 - Page Not Found">
   <main class="flex-1 max-w-4xl mx-auto px-4 py-16 w-full flex flex-col items-center justify-center">
-    <h1 class="text-6xl font-bold mb-4">404</h1>
-    <p class="text-2xl text-muted-foreground mb-8">Page not found</p>
-    <a 
-      href="/" 
-      class="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
-    >
-      Go Home
-    </a>
+    <h1 class="text-6xl font-bold mb-4">{randomEmoji} 404</h1>
+    <p class="text-2xl text-muted-foreground mb-4 text-center max-w-2xl">{randomMessage}</p>
+
+    <p class="text-lg text-muted-foreground mb-8">Let's get you back on track.</p>
+
+    <div class="flex flex-row gap-3 mb-8 flex-wrap justify-center">
+      <Button variant="outline" size="lg">
+        <a href="/posts">
+          📘 Read my blog
+        </a>
+      </Button>
+      <Button variant="outline" size="lg">
+        <a href="/music">
+          🎹 Check out my music
+        </a>
+      </Button>
+      <Button size="lg">
+        <a href="/">
+          Go Home
+        </a>
+      </Button>
+    </div>
+
+
   </main>
 </BaseLayout>

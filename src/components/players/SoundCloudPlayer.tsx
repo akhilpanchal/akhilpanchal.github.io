@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { updateCurrentTime, updateVolume } from '../../lib/mediaPlayerState';
+import { updateCurrentTime } from '../../lib/mediaPlayerState';
 
 declare global {
   interface Window {
@@ -110,8 +110,6 @@ export default function SoundCloudPlayer({
       id="soundcloud-player"
       width="100%"
       height="100%"
-      scrolling="no"
-      frameBorder="no"
       allow="autoplay"
       src={embedUrl}
     />

@@ -27,6 +27,7 @@ export default function YouTubePlayer({
   onPause,
 }: YouTubePlayerProps) {
   const playerRef = useRef<any>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const timeUpdateIntervalRef = useRef<number | null>(null);
   const isPlayerReady = useRef(false);
 
@@ -34,50 +35,38 @@ export default function YouTubePlayer({
   useEffect(() => {
     if (typeof window === 'undefined' || !window.YT || !videoId) return;
 
-    // Create new player if it doesn't exist
-    if (!playerRef.current) {
-      playerRef.current = new window.YT.Player('youtube-player', {
-        height: '100%',
-        width: '100%',
-        videoId,
-        playerVars: {
-          autoplay: 1,
-          modestbranding: 1,
-          rel: 0,
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    // YouTube API requires the iframe to have an id
+    playerRef.current = new window.YT.Player(iframe, {
+      events: {
+        onReady: (event: any) => {
+          isPlayerReady.current = true;
+          if (currentTime) {
+            event.target.seekTo(currentTime);
+          }
+          if (volume !== undefined) {
+            event.target.setVolume(volume);
+          }
+          onReady?.();
         },
-        events: {
-          onReady: (event: any) => {
-            isPlayerReady.current = true;
-            if (currentTime) {
-              event.target.seekTo(currentTime);
-            }
-            if (volume !== undefined) {
-              event.target.setVolume(volume);
-            }
-            onReady?.();
-          },
-          onStateChange: (event: any) => {
-            // YouTube player states: 1 (playing), 2 (paused)
-            if (event.data === 1) {
-              startTimeTracking();
-              onPlay?.();
-            } else if (event.data === 2) {
-              stopTimeTracking();
-              onPause?.();
-            }
-          },
+        onStateChange: (event: any) => {
+          if (event.data === 1) {
+            startTimeTracking();
+            onPlay?.();
+          } else if (event.data === 2) {
+            stopTimeTracking();
+            onPause?.();
+          }
         },
-      });
-    } else {
-      // Update existing player with new video
-      playerRef.current.loadVideoById(videoId);
-      if (volume !== undefined) {
-        playerRef.current.setVolume(volume);
-      }
-    }
+      },
+    });
 
     return () => {
       stopTimeTracking();
+      isPlayerReady.current = false;
+      playerRef.current = null;
     };
   }, [videoId]);
 
@@ -130,20 +119,18 @@ export default function YouTubePlayer({
     }
   };
 
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      stopTimeTracking();
-      isPlayerReady.current = false;
-      if (playerRef.current) {
-        try {
-          playerRef.current.destroy();
-        } catch (error) {
-          console.error('Error destroying YouTube player:', error);
-        }
-      }
-    };
-  }, []);
+  // Generate YouTube embed URL - React will create fresh iframe when videoId changes
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&modestbranding=1&rel=0`;
 
-  return <div id="youtube-player" className="w-full h-full"></div>;
+  return (
+    <iframe
+      ref={iframeRef}
+      id={`youtube-player-${videoId}`}
+      width="100%"
+      height="100%"
+      src={embedUrl}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+  );
 }

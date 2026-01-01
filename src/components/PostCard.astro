@@ -1,0 +1,48 @@
+---
+import { formatDateShort } from '@/lib/utils';
+
+interface Props {
+  title: string;
+  date: Date;
+  slug: string;
+  tags?: string[];
+  excerpt?: string;
+}
+
+const { title, date, slug, tags, excerpt } = Astro.props;
+
+const formattedDate = formatDateShort(date);
+---
+
+<article class="border-b border-border pb-8 mb-8 last:border-b-0">
+  <a href={slug} class="group">
+    <h2 class="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
+      {title}
+    </h2>
+  </a>
+  
+  <div class="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+    <time datetime={date.toISOString()}>{formattedDate}</time>
+    {tags && tags.length > 0 && (
+      <>
+        <span>•</span>
+        <div class="flex gap-2">
+          {tags.map((tag) => (
+            <span class="text-primary">#{tag}</span>
+          ))}
+        </div>
+      </>
+    )}
+  </div>
+  
+  {excerpt && (
+    <p class="text-foreground mb-3">{excerpt}</p>
+  )}
+  
+  <a 
+    href={slug} 
+    class="text-primary hover:underline text-sm font-medium"
+  >
+    Read more →
+  </a>
+</article>

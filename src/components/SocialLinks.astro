@@ -1,0 +1,24 @@
+---
+import { Linkedin, Github, Instagram, Youtube } from 'lucide-react';
+
+const socialLinks = [
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/akhilpanchal', Icon: Linkedin },
+  { name: 'GitHub', url: 'https://github.com/akhilpanchal', Icon: Github },
+  { name: 'Instagram', url: 'https://www.instagram.com/akhilpanchal', Icon: Instagram },
+  { name: 'YouTube', url: 'https://www.youtube.com/@akhilmusic', Icon: Youtube },
+];
+---
+
+<div class="flex gap-4">
+  {socialLinks.map((link) => (
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-muted-foreground hover:text-primary transition-colors"
+      aria-label={link.name}
+    >
+      <link.Icon className="w-5 h-5" />
+    </a>
+  ))}
+</div>

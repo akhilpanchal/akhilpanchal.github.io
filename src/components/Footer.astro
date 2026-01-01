@@ -1,0 +1,22 @@
+---
+import SocialLinks from './SocialLinks.astro';
+---
+
+<footer class="mt-auto border-t border-border">
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="flex flex-col items-center gap-4">
+      <SocialLinks />
+      <p class="text-sm text-muted-foreground">
+        
+        <a 
+          href="https://creativecommons.org/licenses/by-nc/4.0/" 
+          target="_blank" 
+          rel="noopener"
+          class="hover:text-primary transition-colors"
+        >
+          Copyright © {new Date().getFullYear()} Akhil Panchal
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

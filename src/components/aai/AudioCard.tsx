@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { stopAllOtherPlayers, onStopAllPlayers } from '@/lib/mediaPlayerState';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface AudioCardProps {
   src: string;
@@ -115,20 +117,23 @@ export default function AudioCard({ src, title, note, date }: AudioCardProps) {
   };
 
   return (
-    <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
-      <div className="mb-4">
+    <Card>
+      <CardContent className="pt-6">
+        <div className="mb-4">
         <div className="flex items-start justify-between gap-4 mb-2">
           <div>
             <h3 className="text-2xl font-semibold tracking-tight">{title}</h3>
           </div>
           <div className="flex items-center gap-2">
-            <button
+            <Button
               onClick={toggleMute}
-              className="p-1 hover:text-foreground transition-colors"
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7"
               aria-label={isMuted ? 'Unmute' : 'Mute'}
             >
               {isMuted || volume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} />}
-            </button>
+            </Button>
             <input
               type="range"
               min="0"
@@ -145,14 +150,15 @@ export default function AudioCard({ src, title, note, date }: AudioCardProps) {
       </div>
 
       <div className="flex gap-4 items-center">
-        <button
+        <Button
           onClick={togglePlayPause}
           disabled={isLoading}
-          className="shrink-0 inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground w-12 h-12 hover:opacity-90 transition-opacity disabled:opacity-50"
+          size="icon"
+          className="shrink-0 rounded-full w-12 h-12"
           aria-label={isPlaying ? 'Pause' : 'Play'}
         >
           {isPlaying ? <Pause size={20} /> : <Play size={20} className="ml-0.5" />}
-        </button>
+        </Button>
         <div className="relative flex-1">
           {isLoading && (
             <div className="absolute inset-0 flex items-center justify-center bg-muted/50 rounded">
@@ -165,7 +171,8 @@ export default function AudioCard({ src, title, note, date }: AudioCardProps) {
             <span>{duration}</span>
           </div>
         </div>
-      </div>
-    </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }

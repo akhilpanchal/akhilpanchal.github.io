@@ -1,0 +1,9 @@
+---
+import AaiSurgeryLayout from '../../layouts/AaiSurgeryLayout.astro';
+import { getAaiContent } from '@/lib/i18n';
+
+const locale = 'en';
+const content = await getAaiContent(locale);
+---
+
+<AaiSurgeryLayout locale={locale} content={content} />

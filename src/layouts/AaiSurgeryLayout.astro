@@ -1,22 +1,25 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from './BaseLayout.astro';
 import TimelineSection from '../components/aai/TimelineSection.astro';
 import AudioCard from '../components/aai/AudioCard';
 import PhotoThumbnail from '../components/aai/PhotoThumbnail';
 import VideoEmbed from '../components/aai/VideoEmbed';
 import YouTube from '../components/YouTube';
-import { getAaiContent } from '@/lib/i18n';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { Locale } from '@/data/aai/types';
+import type { AaiContent } from '@/data/aai/types';
 
-const locale = (Astro.currentLocale || 'en') as Locale;
-const content = await getAaiContent(locale);
+interface Props {
+  locale: Locale;
+  content: AaiContent;
+}
 
-const languages: { code: Locale; label: string }[] = [
-  { code: 'en', label: 'English' },
-  { code: 'mr', label: 'मराठी' },
-  { code: 'gu', label: 'ગુજરાતી' },
-  { code: 'hi', label: 'हिन्दी' }
+const { locale, content } = Astro.props;
+
+const languages: { code: Locale; label: string; url: string }[] = [
+  { code: 'en', label: 'English', url: '/aai-surgery' },
+  { code: 'mr', label: 'मराठी', url: '/aai-surgery/mr' },
+  { code: 'gu', label: 'ગુજરાતી', url: '/aai-surgery/gu' },
+  { code: 'hi', label: 'हिन्दी', url: '/aai-surgery/hi' }
 ];
 ---
 
@@ -24,11 +27,11 @@ const languages: { code: Locale; label: string }[] = [
   <main class="flex-1 max-w-4xl mx-auto px-4 py-16 w-full">
     <!-- Header with language switcher -->
     <header class="mb-12 space-y-6">
-      <div class="flex justify-end items-center gap-2 text-sm">
+      <div class="flex justify-center items-center gap-2 text-sm">
         <span class="text-muted-foreground">{content.ui.languageLabel}:</span>
         {languages.map(lang => (
           <a
-            href={getRelativeLocaleUrl(lang.code, 'aai-surgery')}
+            href={lang.url}
             class:list={[
               'px-2 py-1 rounded transition-colors',
               locale === lang.code

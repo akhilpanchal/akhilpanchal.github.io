@@ -1,0 +1,23 @@
+---
+import AaiSurgeryLayout from '../../layouts/AaiSurgeryLayout.astro';
+import { getAaiContent } from '@/lib/i18n';
+import type { Locale } from '@/data/aai/types';
+
+export async function getStaticPaths() {
+  const locales: Locale[] = ['mr', 'gu', 'hi'];
+  
+  return await Promise.all(
+    locales.map(async (locale) => {
+      const content = await getAaiContent(locale);
+      return {
+        params: { lang: locale },
+        props: { locale, content }
+      };
+    })
+  );
+}
+
+const { locale, content } = Astro.props;
+---
+
+<AaiSurgeryLayout locale={locale} content={content} />

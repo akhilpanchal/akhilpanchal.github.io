@@ -7,6 +7,13 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://algorythm.dev',
+  i18n: {
+    locales: ['en', 'mr', 'gu', 'hi'],
+    defaultLocale: 'en',
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
   vite: {
     plugins: [tailwindcss()],
   },

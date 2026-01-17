@@ -1,81 +1,72 @@
 # algorythm.dev
 
-Personal website built with Astro, featuring a music discography with dynamic YouTube integration.
+Personal website for Akhil Panchal, built with Astro and featuring a blog, music discography, and a persistent media player.
 
 ## Features
 
-- 🎵 **Music Discography**: Display YouTube videos with inline playback
-- 📅 **Dynamic Release Dates**: Automatically fetched from YouTube API at build time
-- 📝 **Blog**: Write posts in MDX with React components
-- 🌗 **Dark Mode**: Theme toggle with system preference detection
-- 🎨 **Design System**: Built with shadcn/ui and Tailwind CSS
+- 🎵 **Music Discography**: Centralized discography powered by a persistent YouTube/SoundCloud player
+- 📅 **Release Dates**: Manually curated release dates stored in the discography data and sorted newest-first
+- 📝 **Blog**: Content collections for blog and music posts, with MDX support for React components
+- 🌗 **Dark Mode**: Theme toggle with system preference detection and local storage persistence
+- 🎨 **Design System**: Tailwind CSS 4 with shadcn-style UI components
 
 ## Setup
 
-### 1. Install Dependencies
+### 1. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 2. YouTube API (Optional)
-
-To fetch video release dates automatically, set up YouTube Data API:
-
-```bash
-# Copy example env file
-cp .env.example .env
-
-# Add your YouTube API key
-YOUTUBE_API_KEY=your_key_here
-```
-
-See [YOUTUBE-API-SETUP.md](./YOUTUBE-API-SETUP.md) for detailed instructions.
-
-**Note**: The site works without an API key - videos just won't show release dates.
-
-### 3. Run Development Server
+### 2. Run development server
 
 ```bash
 npm run dev
 ```
 
-### 4. Build for Production
+### 3. Build for production
 
 ```bash
 npm run build
 ```
 
-## Project Structure
+## Project structure
 
-```
+```text
 src/
-├── components/         # Astro and React components
-├── content/           # Blog posts and music content
-├── data/              # Discography data
-├── layouts/           # Page layouts
-├── lib/               # Utilities (YouTube API, etc.)
-├── pages/             # Route pages
-└── styles/            # Global styles
+├── components/         # Astro and React components (UI, discography, media player, etc.)
+├── content/            # Content collections: blog/ and music/
+├── data/               # Discography data (YouTube + SoundCloud tracks)
+├── layouts/            # Page layouts and base layout
+├── lib/                # Utilities (media player state, date formatting, helpers)
+├── pages/              # Route pages (index, posts, music, about, rss, etc.)
+├── styles/             # Global styles and typography configuration
+└── types/              # Shared TypeScript types (media player, YouTube IFrame API)
 ```
 
-## Adding Music
+## Managing the discography
 
-Add videos to `src/data/discography.ts`:
+Tracks are defined in `src/data/discography.ts` using the `MediaTrack` type:
 
-```typescript
-{
-  videoId: 'abc123xyz',     // From YouTube URL
-  title: 'Song Title',
-  category: 'original',     // or 'cover'
-  description: 'Description',
-  // releaseDate fetched automatically from YouTube!
+```ts
+export interface MediaTrack {
+  platform: 'youtube' | 'soundcloud';
+  trackId: string;      // YouTube videoId or SoundCloud track URL
+  title: string;
+  releaseDate?: Date | string; // Manually specified
+  description?: string;
+  category?: 'original' | 'cover';
+  thumbnailUrl?: string;
 }
 ```
 
-## Documentation
+To add a new track:
 
-- [YouTube API Setup](./YOUTUBE-API-SETUP.md) - Configure automatic date fetching
-- [Inline Player Guide](./INLINE-PLAYER-GUIDE.md) - Persistent video player details
-- [Discography Guide](./DISCOGRAPHY-README.md) - Complete discography documentation
+1. Add a new `MediaTrack` entry to the `discographyData` array in `src/data/discography.ts`.
+2. Set `platform` to `'youtube'` or `'soundcloud'`.
+3. Set `trackId` to the YouTube video ID or full SoundCloud URL.
+4. Provide `releaseDate` as `YYYY-MM-DD` so sorting works correctly.
+5. Optionally set `category` (`'original'` or `'cover'`) and `description`.
+
+Helper functions like `getOriginalSongs`, `getCoverSongs`, and `getAllTracksSorted` are exported from the same file for use in components.
 

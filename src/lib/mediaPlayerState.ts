@@ -2,13 +2,13 @@
  * Global Media Player State Management
  * 
  * This module manages the persistent media player state across page navigations.
- * Supports both YouTube and SoundCloud platforms.
+ * Supports both YouTube and SoundCloud platforms, as well as local audio/video players.
  * Uses browser localStorage and custom events for real-time synchronization.
  */
 
 import { logError, isValidNumber } from './utils';
 
-export type Platform = 'youtube' | 'soundcloud';
+export type Platform = 'youtube' | 'soundcloud' | 'audio' | 'video';
 
 export interface MediaPlayerState {
   isOpen: boolean;
@@ -23,6 +23,7 @@ export interface MediaPlayerState {
 
 const STORAGE_KEY = 'media-player-state';
 const EVENT_NAME = 'media-player-state-change';
+const STOP_ALL_EVENT = 'media-stop-all';
 
 // Default state
 const defaultState: MediaPlayerState = {
@@ -35,6 +36,42 @@ const defaultState: MediaPlayerState = {
   currentTime: 0,
   volume: 100,
 };
+
+/**
+ * Emit event to stop all other media players
+ * @param exceptId - ID of the player that should continue playing
+ */
+export function stopAllOtherPlayers(exceptId: string) {
+  if (typeof window === 'undefined') return;
+  
+  const event = new CustomEvent(STOP_ALL_EVENT, { 
+    detail: { exceptId } 
+  });
+  window.dispatchEvent(event);
+}
+
+/**
+ * Listen for stop-all events
+ * @param playerId - Unique ID for this player
+ * @param callback - Function to call when this player should stop
+ */
+export function onStopAllPlayers(playerId: string, callback: () => void) {
+  if (typeof window === 'undefined') return () => {};
+  
+  const handler = (event: Event) => {
+    const customEvent = event as CustomEvent;
+    if (customEvent.detail.exceptId !== playerId) {
+      callback();
+    }
+  };
+  
+  window.addEventListener(STOP_ALL_EVENT, handler);
+  
+  // Return cleanup function
+  return () => {
+    window.removeEventListener(STOP_ALL_EVENT, handler);
+  };
+}
 
 /**
  * Get current player state from localStorage

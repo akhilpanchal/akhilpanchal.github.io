@@ -24,7 +24,13 @@ export default function PersistentMediaPlayer() {
   }, []);
 
   // Don't render if player is not open or no track selected
+  // Also skip rendering for audio/video elements (handled by AudioCard/VideoEmbed)
   if (!state.isOpen || !state.currentTrackId || !state.platform) {
+    return null;
+  }
+
+  // Only render for YouTube and SoundCloud embedded players
+  if (state.platform !== 'youtube' && state.platform !== 'soundcloud') {
     return null;
   }
 

@@ -27,21 +27,28 @@ export default function AudioCard({ src, title, note, date }: AudioCardProps) {
     if (!waveformRef.current) return;
 
     // Get theme colors from CSS variables
-    const isDark = document.documentElement.classList.contains('dark');
-    const waveColor = isDark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)';
-    const progressColor = isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)';
+    const computedStyle = getComputedStyle(document.documentElement);
+    const foreground = computedStyle.getPropertyValue('--foreground').trim();
+    const mutedForeground = computedStyle.getPropertyValue('--muted-foreground').trim();
+    
+    // Convert oklch to rgb for wavesurfer (with fallback)
+    const waveColor = mutedForeground || 'rgba(0, 0, 0, 0.3)';
+    const progressColor = foreground || 'rgba(0, 0, 0, 0.8)';
+    const cursorColor = foreground || 'rgba(0, 0, 0, 0.5)';
 
     const ws = WaveSurfer.create({
       container: waveformRef.current,
       waveColor,
       progressColor,
-      cursorColor: 'transparent',
+      cursorColor,
+      cursorWidth: 2,
       barWidth: 2,
       barGap: 1,
       barRadius: 2,
       height: 80,
       normalize: true,
       backend: 'WebAudio',
+      interact: true, // Enable seeking by clicking on the waveform
     });
 
     ws.load(src);
@@ -165,7 +172,11 @@ export default function AudioCard({ src, title, note, date }: AudioCardProps) {
               <span className="text-sm text-muted-foreground">Loading audio...</span>
             </div>
           )}
-          <div ref={waveformRef} className="rounded overflow-hidden bg-muted/30" />
+          <div 
+            ref={waveformRef} 
+            className="rounded overflow-hidden bg-muted/30 cursor-pointer" 
+            title="Click to seek to any position"
+          />
           <div className="flex justify-between items-center mt-2 text-xs text-muted-foreground">
             <span>{currentTime}</span>
             <span>{duration}</span>

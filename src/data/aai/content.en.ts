@@ -11,11 +11,20 @@ export const content: AaiContent = {
     },
     timeline: [
         {
+            id: 'symptoms',
+            type: 'text',
+            date: 'October 23, 2025',
+            title: '👁️ Bubbly Vision',
+            note: 'Right around Diwali, my mother starts seeing bubbles in her left eye, interfering with her vision. Upon checkup, a retinal detachment is confirmed. Surgery is urgently needed to prevent total detachment.',
+            photo: '/aai/images/pre-surgery.jpg',
+            photoAlt: 'Before eye surgery'
+        },
+        {
             id: 'pre-surgery',
             type: 'milestone',
             date: 'October 27, 2025',
-            title: 'Before Surgery',
-            note: 'Ready for the procedure. This photo was taken by my mother-in-law, who was a great support during this time 🤍.',
+            title: '🏥 Before Surgery',
+            note: 'Getting ready for the procedure—Scleral Buckling. This photo was taken by my mother-in-law, who was a great support during this time 🤍',
             photo: '/aai/images/pre-surgery.jpg',
             photoAlt: 'Before eye surgery'
         },
@@ -23,8 +32,8 @@ export const content: AaiContent = {
             id: 'post-surgery',
             type: 'milestone',
             date: 'October 30, 2025',
-            title: 'The Surgery',
-            note: '1st couple days after the surgery were rough. Day 3 looked much better. Now begins the journey of healing and patience.',
+            title: '💪 After Surgery',
+            note: 'The first couple days after surgery were rough. Day 3 looked much better. Now begins the journey of healing and patience.',
             photo: '/aai/images/post-surgery.jpg',
             photoAlt: 'Just after the surgery'
         },
@@ -32,10 +41,11 @@ export const content: AaiContent = {
             id: 'recovery-photo',
             type: 'milestone',
             date: 'November 5, 2025',
-            title: 'Not Over Yet',
-            note: 'Condition improving, but the retinal break is still open. Gas Injection + Laser procedure performed.\
-            She has to stay in this position for 18 hours a day for ~2 weeks to aid healing. \
-            This setup with pillows made by my father demonstrates his *jugaad* skills that kept her comfortable! \
+            title: '🛏️ Not Over Yet',
+            note: 'Condition improving, but the retinal break is still open. Gas injection and laser procedure performed. She has to stay in this position for 18 hours a day for ~2 weeks to aid healing.\
+            This pillow setup made by my father demonstrates his jugaad skills that kept her as comfortable as possible!\
+            Her neck and back were sore from maintaining this position. \
+            Checkups continued regularly and the hard work of being in this position was gradually paying off. \
             Small victories felt very significant.',
             photo: '/aai/images/recovery.jpg',
             photoAlt: 'During recovery'
@@ -45,7 +55,7 @@ export const content: AaiContent = {
             type: 'song',
             date: 'November 9, 2025',
             title: 'Chhota Sa Balma',
-            note: 'The first song after surgery. A playful, light-hearted tune. You could hear the smile in her voice – the spark returning.',
+            note: 'The first song after surgery. A playful, light-hearted tune. You could hear the smile in her voice—the spark returning.',
             audio: '/aai/voice-notes/3 - Chhota Sa Balma.m4a'
         },
         {
@@ -68,8 +78,8 @@ export const content: AaiContent = {
             id: 'recovery-update-2',
             type: 'text',
             date: 'November 11, 2025',
-            title: 'Another session of laser',
-            note: 'Condition continues to improve. But still not where it needs to be. Another session of Laser procedure performed.'
+            title: '⚡ Another Session of Laser',
+            note: 'Condition continues to improve, but still not where it needs to be. Another session of laser procedure performed to repair the retinal micro tears.'
         },
         {
             id: 'song-3',
@@ -115,28 +125,26 @@ export const content: AaiContent = {
             id: 'students-wishes',
             type: 'video',
             date: 'November 22, 2025',
-            title: 'Love from Her Music Family',
+            title: '💝 Love from Her Music Family',
             note: 'Her fellow students from the music class sent this heartwarming message, letting her know she was missed and loved.',
-            video: '/aai/videos/students-wishes.mp4'
+            youtube: 'rXhw57l8gSo'
         },
         {
             id: 'friend-tribute',
             type: 'video',
             date: 'January 10, 2026',
-            title: "A Friend's Tribute",
+            title: "🎬 A Friend's Tribute",
             note: 'Her good friend Savita created this beautiful tribute using one of her recordings. The community of music she built is a testament to her spirit.',
-            video: '/aai/videos/friend-tribute.mp4'
+            youtube: 'XWbSUpGxtec'
         },
         {
             id: 'back-to-live-singing',
             type: 'video',
             date: 'January 11, 2026',
-            title: "Back to Live Singing",
-            note: 'She performed at The Orange - Art & Book Cafe in Pune. After her performance, an audience member requested her to sing something in Marathi.\
-            Checkout her Youtube Channel for more such performances!',
+            title: '🎤 Back to Live Singing',
+            note: 'She performed at The Orange - Art & Book Cafe in Pune. After her performance, an audience member requested her to sing something in Marathi. Check out her YouTube channel for more such performances!',
             youtube: 't0mbQKUmtO0'
-        },
-
+        }
     ],
     ui: {
         playAll: 'Play all 8 songs',

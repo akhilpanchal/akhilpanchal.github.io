@@ -6,8 +6,8 @@ export const content: AaiContent = {
         description: "Songs and moments from my mother's eye surgery recovery journey"
     },
     intro: {
-        heading: "Aai's Recovery Journey",
-        subheading: "A timeline of songs, love from, and healing through music"
+        heading: "The Sounds of Healing",
+        subheading: "A timeline of songs, love, and healing through music"
     },
     timeline: [
         {

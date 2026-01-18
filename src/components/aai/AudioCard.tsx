@@ -153,7 +153,7 @@ export default function AudioCard({ src, title, note, date }: AudioCardProps) {
             />
           </div>
         </div>
-        <p className="text-sm text-foreground/80 leading-relaxed">{note}</p>
+        <p className="text-sm text-foreground/80 leading-relaxed text-justify">{note}</p>
       </div>
 
       <div className="flex gap-4 items-center">

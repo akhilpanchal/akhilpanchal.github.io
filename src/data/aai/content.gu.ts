@@ -126,14 +126,6 @@ export const content: AaiContent = {
       youtube: 'rXhw57l8gSo'
     },
     {
-      id: 'friend-tribute',
-      type: 'video',
-      date: 'જાન્યુઆરી ૧૦, ૨૦૨૬',
-      title: '🎬 મિત્રની શ્રદ્ધાંજલિ',
-      note: 'તેમની સારી મિત્ર સવિતાએ તેમના એક રેકોર્ડિંગનો ઉપયોગ કરીને આ સુંદર શ્રદ્ધાંજલિ બનાવી. તેમણે બનાવેલો સંગીતનો સમુદાય તેમની ભાવનાનો પુરાવો છે.',
-      youtube: 'XWbSUpGxtec'
-    },
-    {
       id: 'back-to-live-singing',
       type: 'video',
       date: 'જાન્યુઆરી ૧૧, ૨૦૨૬',

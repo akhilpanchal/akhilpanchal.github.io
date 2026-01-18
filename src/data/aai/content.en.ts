@@ -130,14 +130,6 @@ export const content: AaiContent = {
             youtube: 'rXhw57l8gSo'
         },
         {
-            id: 'friend-tribute',
-            type: 'video',
-            date: 'January 10, 2026',
-            title: "🎬 A Friend's Tribute",
-            note: 'Her good friend Savita created this beautiful tribute using one of her recordings. The community of music she built is a testament to her spirit.',
-            youtube: 'XWbSUpGxtec'
-        },
-        {
             id: 'back-to-live-singing',
             type: 'video',
             date: 'January 11, 2026',

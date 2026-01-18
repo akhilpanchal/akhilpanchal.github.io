@@ -127,14 +127,6 @@ export const content: AaiContent = {
       youtube: 'rXhw57l8gSo'
     },
     {
-      id: 'friend-tribute',
-      type: 'video',
-      date: 'जानेवारी १०, २०२६',
-      title: '🎬 मैत्रिणीकडून श्रद्धांजली',
-      note: 'तिच्या चांगल्या मैत्रिणी सविताने तिच्या एका रेकॉर्डिंगचा वापर करून ही सुंदर श्रद्धांजली तयार केली. तिने तयार केलेला संगीताचा समुदाय तिच्या भावनेचा पुरावा आहे.',
-      youtube: 'XWbSUpGxtec'
-    },
-    {
       id: 'back-to-live-singing',
       type: 'video',
       date: 'जानेवारी ११, २०२६',

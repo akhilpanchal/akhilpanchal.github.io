@@ -15,6 +15,17 @@ interface Props {
 
 const { locale, content } = Astro.props;
 
+// Group timeline events by date
+const groupedTimeline = content.timeline.reduce((acc, event) => {
+  const existingGroup = acc.find(group => group.date === event.date);
+  if (existingGroup) {
+    existingGroup.events.push(event);
+  } else {
+    acc.push({ date: event.date, events: [event] });
+  }
+  return acc;
+}, [] as { date: string; events: typeof content.timeline }[]);
+
 const languages: { code: Locale; label: string; url: string }[] = [
   { code: 'en', label: 'English', url: '/aai-surgery' },
   { code: 'hi', label: 'हिन्दी', url: '/aai-surgery/hi' },
@@ -60,68 +71,85 @@ const languages: { code: Locale; label: string; url: string }[] = [
 
     <!-- Timeline -->
     <div class="relative">
-      {content.timeline.map((event, index) => (
+      {groupedTimeline.map((group, groupIndex) => (
         <TimelineSection
-          date={event.date}
-          isFirst={index === 0}
-          isLast={index === content.timeline.length - 1}
+          date={group.date}
+          isFirst={groupIndex === 0}
+          isLast={groupIndex === groupedTimeline.length - 1}
         >
-          {event.type === 'milestone' && (
-            <div class="space-y-3">
-              <h3 class="text-2xl font-semibold">{event.title}</h3>
-              {event.note && (
-                <p class="text-base text-foreground/80 leading-relaxed text-justify">{event.note}</p>
-              )}
-              {event.photo && (
-                <div class="flex items-center gap-2">
-                  <PhotoThumbnail
-                    src={event.photo}
-                    alt={event.photoAlt || event.title}
-                    caption={event.note}
-                    client:load
-                  />
-                  <span class="text-xs text-muted-foreground">{content.ui.clickToExpand}</span>
+          {group.events.map((event) => (
+            <>
+              {event.type === 'milestone' && (
+                <div class="space-y-3 mb-8 last:mb-0">
+                  <h3 class="text-2xl font-semibold">{event.title}</h3>
+                  {event.note && (
+                    <p class="text-base text-foreground/80 leading-relaxed text-justify">{event.note}</p>
+                  )}
+                  {event.photo && (
+                    <div class="flex items-center gap-2 flex-wrap">
+                      {Array.isArray(event.photo) ? (
+                        event.photo.map((photoSrc, idx) => (
+                          <PhotoThumbnail
+                            src={photoSrc}
+                            alt={Array.isArray(event.photoAlt) ? event.photoAlt[idx] : event.photoAlt || event.title}
+                            caption={event.note}
+                            client:load
+                          />
+                        ))
+                      ) : (
+                        <PhotoThumbnail
+                          src={event.photo}
+                          alt={Array.isArray(event.photoAlt) ? event.photoAlt[0] : (event.photoAlt || event.title)}
+                          caption={event.note}
+                          client:load
+                        />
+                      )}
+                      <span class="text-xs text-muted-foreground">{content.ui.clickToExpand}</span>
+                    </div>
+                  )}
                 </div>
               )}
-            </div>
-          )}
 
-          {event.type === 'song' && event.audio && (
-            <AudioCard
-              src={event.audio}
-              title={event.title}
-              note={event.note || ''}
-              date={event.date}
-              client:load
-            />
-          )}
+              {event.type === 'song' && event.audio && (
+                <div class="mb-8 last:mb-0">
+                  <AudioCard
+                    src={event.audio}
+                    title={event.title}
+                    note={event.note || ''}
+                    date={event.date}
+                    client:load
+                  />
+                </div>
+              )}
 
-          {event.type === 'video' && (event.video || event.youtube) && (
-            <div class="space-y-3">
-              <h3 class="text-2xl font-semibold">{event.title}</h3>
-              {event.note && (
-                <p class="text-base text-foreground/80 leading-relaxed text-justify mb-3">{event.note}</p>
+              {event.type === 'video' && (event.video || event.youtube) && (
+                <div class="space-y-3 mb-8 last:mb-0">
+                  <h3 class="text-2xl font-semibold">{event.title}</h3>
+                  {event.note && (
+                    <p class="text-base text-foreground/80 leading-relaxed text-justify mb-3">{event.note}</p>
+                  )}
+                  {event.youtube ? (
+                    <YouTube id={event.youtube} title={event.title} client:load />
+                  ) : event.video && (
+                    <VideoEmbed
+                      src={event.video}
+                      caption=""
+                      client:load
+                    />
+                  )}
+                </div>
               )}
-              {event.youtube ? (
-                <YouTube id={event.youtube} title={event.title} client:load />
-              ) : event.video && (
-                <VideoEmbed
-                  src={event.video}
-                  caption=""
-                  client:load
-                />
-              )}
-            </div>
-          )}
 
-          {event.type === 'text' && (
-            <div class="space-y-3">
-              <h3 class="text-2xl font-semibold">{event.title}</h3>
-              {event.note && (
-                <p class="text-base text-foreground/80 leading-relaxed text-justify">{event.note}</p>
+              {event.type === 'text' && (
+                <div class="space-y-3 mb-8 last:mb-0">
+                  <h3 class="text-2xl font-semibold">{event.title}</h3>
+                  {event.note && (
+                    <p class="text-base text-foreground/80 leading-relaxed text-justify">{event.note}</p>
+                  )}
+                </div>
               )}
-            </div>
-          )}
+            </>
+          ))}
         </TimelineSection>
       ))}
     </div>

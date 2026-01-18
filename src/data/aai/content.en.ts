@@ -2,11 +2,11 @@ import type { AaiContent } from './types';
 
 export const content: AaiContent = {
     meta: {
-        title: "Aai's Recovery Journal",
+        title: "Aai's Recovery Journey",
         description: "Songs and moments from my mother's eye surgery recovery journey"
     },
     intro: {
-        heading: "Aai's Recovery Journal",
+        heading: "Aai's Recovery Journey",
         subheading: "A timeline of songs, love, and healing through music"
     },
     timeline: [
@@ -51,7 +51,14 @@ export const content: AaiContent = {
             photoAlt: 'During recovery'
         },
         {
-            id: 'song-1',
+            id: 'voice-notes-intro',
+            type: 'text',
+            date: 'November 9, 2025',
+            title: '1 song, 1 day at a time',
+            note: 'Each day, as her vision and confidence improve, she records a new song—all while maintaining the recovery position.',
+        },
+        {
+            id: 'Chhota Sa Balma',
             type: 'song',
             date: 'November 9, 2025',
             title: 'Chhota Sa Balma',
@@ -59,15 +66,17 @@ export const content: AaiContent = {
             audio: '/aai/voice-notes/3 - Chhota Sa Balma.m4a'
         },
         {
-            id: 'song-2',
-            type: 'song',
+            id: 'jayu-maushi',
+            type: 'milestone',
             date: 'November 10, 2025',
-            title: 'Meri Jaan Mujhe Jaan Na Kaho',
-            note: 'Growing stronger with each note. This classic tune reminded us all of her dedication and the joy she finds in every melody.',
-            audio: '/aai/voice-notes/2 - Meri Jaan Mujhe Jaan Na Kaho.m4a'
+            title: '🍲 Jayu Maushi\'s Daily Care',
+            note: 'Jayu Maushi has been a pillar of strength throughout my mother\'s recovery. \
+            She sent home-cooked meals every day when my mother was unable to cook for herself.',
+            photo: ['/aai/images/jayu-1.jpg', '/aai/images/jayu-2.jpg', '/aai/images/jayu-3.jpg'],
+            photoAlt: ['With her oldest friend Jayu', 'With her oldest friend Jayu', 'With her oldest friend Jayu']
         },
         {
-            id: 'song-5',
+            id: 'Tu Hai Toh',
             type: 'song',
             date: 'November 10, 2025',
             title: 'Tu Hai Toh',
@@ -82,7 +91,16 @@ export const content: AaiContent = {
             note: 'Condition continues to improve, but still not where it needs to be. Another session of laser procedure performed to repair the retinal micro tears.'
         },
         {
-            id: 'song-3',
+            id: 'Meri Jaan Mujhe Jaan Na Kaho',
+            type: 'song',
+            date: 'November 11, 2025',
+            title: 'Meri Jaan Mujhe Jaan Na Kaho',
+            note: 'Growing stronger with each note. This classic tune reminded us all of her dedication and the joy she finds in every melody.',
+            audio: '/aai/voice-notes/2 - Meri Jaan Mujhe Jaan Na Kaho.m4a'
+        },
+
+        {
+            id: 'Yeh Raatein',
             type: 'song',
             date: 'November 12, 2025',
             title: 'Yeh Raatein',
@@ -90,7 +108,14 @@ export const content: AaiContent = {
             audio: '/aai/voice-notes/4 - Yeh Raatein.m4a'
         },
         {
-            id: 'song-4',
+            id: '2 songs today!',
+            type: 'text',
+            date: 'November 13, 2025',
+            title: '2 songs today!',
+            note: 'Getting in the groove now—recorded 2 songs today as her confidence soars!',
+        },
+        {
+            id: 'Betaab Dil Ki Tamanna',
             type: 'song',
             date: 'November 13, 2025',
             title: 'Betaab Dil Ki Tamanna',
@@ -98,7 +123,7 @@ export const content: AaiContent = {
             audio: '/aai/voice-notes/5 - Betaab Dil Ki Tamanna.m4a'
         },
         {
-            id: 'song-7',
+            id: 'Kehna Hi Kya',
             type: 'song',
             date: 'November 13, 2025',
             title: 'Kehna Hi Kya',
@@ -126,7 +151,9 @@ export const content: AaiContent = {
             type: 'video',
             date: 'November 22, 2025',
             title: '💝 Love from Her Music Family',
-            note: 'Her fellow students from the music class sent this heartwarming message, letting her know she was missed and loved.',
+            note: 'Pradnya Mahajan, founder of The Rutu Vasant Music Club, shared one of my mother\'s voice notes during a club session to let her know she was missed and loved.\
+            Pradnya-Kaaki was a tremendous support throughout my mother\'s recovery. She also came up with the idea of documenting this journey of recovery through music.\
+            This post wouldn\'t exist without her.',
             youtube: 'rXhw57l8gSo'
         },
         {
@@ -134,9 +161,18 @@ export const content: AaiContent = {
             type: 'video',
             date: 'January 11, 2026',
             title: '🎤 Back to Live Singing',
-            note: 'She performed at The Orange - Art & Book Cafe in Pune. After her performance, an audience member requested her to sing something in Marathi. Check out her YouTube channel for more such performances!',
+            note: 'She performed at The Orange - Art & Book Cafe in Pune. After her performance, an audience member requested her to sing something in Marathi.\
+            Check out her YouTube channel for more such performances!',
             youtube: 't0mbQKUmtO0'
-        }
+        },
+        {
+            id: 'end-of-journey',
+            type: 'text',
+            date: 'January 11, 2026',
+            title: '🙏🏽 Thank You!',
+            note: 'Thank you for being a part of Aai\'s recovery journey.\
+            Her vision continues to improve, and she continues to sing every chance she gets 😊.'
+        },
     ],
     ui: {
         playAll: 'Play all 8 songs',

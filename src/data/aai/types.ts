@@ -6,8 +6,8 @@ export interface TimelineEvent {
   date: string;
   title: string;
   note?: string;
-  photo?: string;
-  photoAlt?: string;
+  photo?: string | string[];
+  photoAlt?: string | string[];
   audio?: string;
   video?: string;
   youtube?: string;

@@ -2,7 +2,7 @@ import type { AaiContent } from './types';
 
 export const content: AaiContent = {
     meta: {
-        title: "Aai's Recovery Journey",
+        title: "The Sounds of Healing",
         description: "Songs and moments from my mother's eye surgery recovery journey"
     },
     intro: {

@@ -93,7 +93,7 @@ const languages: { code: Locale; label: string; url: string }[] = [
                             src={photoSrc}
                             alt={Array.isArray(event.photoAlt) ? event.photoAlt[idx] : event.photoAlt || event.title}
                             caption={event.note}
-                            allPhotos={event.photo}
+                            allPhotos={Array.isArray(event.photo) ? event.photo : undefined}
                             allPhotoAlts={Array.isArray(event.photoAlt) ? event.photoAlt : undefined}
                             initialIndex={idx}
                             client:load

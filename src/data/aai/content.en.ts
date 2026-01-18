@@ -7,7 +7,7 @@ export const content: AaiContent = {
     },
     intro: {
         heading: "Aai's Recovery Journey",
-        subheading: "A timeline of songs, love, and healing through music"
+        subheading: "A timeline of songs, love from, and healing through music"
     },
     timeline: [
         {
@@ -20,20 +20,40 @@ export const content: AaiContent = {
             photoAlt: 'Before eye surgery'
         },
         {
+            id: 'mil-blessing',
+            type: 'milestone',
+            date: 'October 27, 2025',
+            title: '♥️ My Mother in Law',
+            note: 'My mother-in-law Manisha Khetan was a great support during her entire journey.\
+            Right from reccomending their family eye doctor, to accompanying to each and every checkups, labs and doctor visit, to helping with daily chores, her presence was the greatest blessing.',
+            photo: ['/aai/images/mil-1.jpg', '/aai/images/mil-2.jpg', '/aai/images/mil-3.jpg'],
+            photoAlt: ['My MIL 1', 'My MIL with my Mother', 'Me and my MIL']
+        },
+        {
             id: 'pre-surgery',
             type: 'milestone',
             date: 'October 27, 2025',
             title: '🏥 Before Surgery',
-            note: 'Getting ready for the procedure—Scleral Buckling. This photo was taken by my mother-in-law, who was a great support during this time 🤍',
+            note: 'Getting ready for the procedure—Scleral Buckling. This photo was taken by my mother-in-law',
             photo: '/aai/images/pre-surgery.jpg',
             photoAlt: 'Before eye surgery'
+        },
+        {
+            id: 'doctor',
+            type: 'text',
+            date: 'October 28, 2025',
+            title: '👨‍⚕️ Our Doctor - Dr. Bhushan Khare',
+            note: 'A big thank you to Dr. Bhushan Khare for performing the surgery with such expertise and care. \
+            His humor kept my mother\'s spirits high during a difficult time. \
+            He patiently explained every aspect of the procedure and recovery, helping us stay positive and calm throughout. \
+            His reassuring presence made all the difference.',
         },
         {
             id: 'post-surgery',
             type: 'milestone',
             date: 'October 30, 2025',
             title: '💪 After Surgery',
-            note: 'The first couple days after surgery were rough. Day 3 looked much better. Now begins the journey of healing and patience.',
+            note: 'The surgery went well. The first couple days after surgery were rough. Day 3 looked much better. Now begins the journey of healing and patience.',
             photo: '/aai/images/post-surgery.jpg',
             photoAlt: 'Just after the surgery'
         },
@@ -42,13 +62,25 @@ export const content: AaiContent = {
             type: 'milestone',
             date: 'November 5, 2025',
             title: '🛏️ Not Over Yet',
-            note: 'Condition improving, but the retinal break is still open. Gas injection and laser procedure performed. She has to stay in this position for 18 hours a day for ~2 weeks to aid healing.\
+            note: 'Condition improving, but the retinal break is still open. Gas injection and laser procedure performed.\
+            She has to stay in this position for 18 hours a day for ~2 weeks to aid healing.\
             This pillow setup made by my father demonstrates his jugaad skills that kept her as comfortable as possible!\
             Her neck and back were sore from maintaining this position. \
             Checkups continued regularly and the hard work of being in this position was gradually paying off. \
             Small victories felt very significant.',
             photo: '/aai/images/recovery.jpg',
             photoAlt: 'During recovery'
+        },
+        {
+            id: 'pappa',
+            type: 'milestone',
+            date: 'November 5, 2025',
+            title: '🧡 My Father',
+            note: 'He was the constant support & witness to this journey. Apart from being with her every step of the way, \
+            my father would give her daily massages to help with the soreness caused by being in this position every day.\
+            ',
+            photo: ['/aai/images/pappa-1.jpg', '/aai/images/pappa-2.jpg', '/aai/images/pappa-3.jpg'],
+            photoAlt: ['photo with pappa', 'photo with pappa', 'photo with pappa']
         },
         {
             id: 'voice-notes-intro',

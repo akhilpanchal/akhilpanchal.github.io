@@ -2,11 +2,11 @@ import type { AaiContent } from './types';
 
 export const content: AaiContent = {
   meta: {
-    title: "માતાની સાજા થવાની પંચાંગ",
+    title: "માતાની સાજા થવાની યાત્રા",
     description: "મારા માતાની આંખની શસ્ત્રક્રિયા પછી સ્વસ્થ થવાના પ્રવાસની ગીતો અને ક્ષણો"
   },
   intro: {
-    heading: "માતાની સાજા થવાની પંચાંગ",
+    heading: "માતાની સાજા થવાની યાત્રા",
     subheading: "ગીતો, પ્રેમ અને સંગીત દ્વારા સ્વસ્થ થવાની યાત્રા"
   },
   timeline: [
@@ -47,7 +47,14 @@ export const content: AaiContent = {
       photoAlt: 'સ્વસ્થ થતી વખતે'
     },
     {
-      id: 'song-1',
+      id: 'voice-notes-intro',
+      type: 'text',
+      date: 'નવેમ્બર ૯, ૨૦૨૫',
+      title: '1 ગીત, 1 દિવસ એક સમયે',
+      note: 'દરેક દિવસે, તેમની દૃષ્ટિ અને આત્મવિશ્વાસ સુધરતાં, તેઓ એક નવું ગીત રેકોર્ડ કરે છે—બધું સ્વસ્થ થવાની સ્થિતિમાં રહેતાં.',
+    },
+    {
+      id: 'Chhota Sa Balma',
       type: 'song',
       date: 'નવેમ્બર ૯, ૨૦૨૫',
       title: 'છોટા સા બાલમા',
@@ -55,15 +62,16 @@ export const content: AaiContent = {
       audio: '/aai/voice-notes/3 - Chhota Sa Balma.m4a'
     },
     {
-      id: 'song-2',
-      type: 'song',
+      id: 'jayu-maushi',
+      type: 'milestone',
       date: 'નવેમ્બર ૧૦, ૨૦૨૫',
-      title: 'મેરી જાન મુઝે જાન ના કહો',
-      note: 'દરેક સ્વર સાથે વધુ મજબૂત થઈ રહી છે. આ ક્લાસિક ધૂને અમને બધાને તેમની સમર્પણ અને દરેક રાગમાં તેમને મળતા આનંદની યાદ અપાવી.',
-      audio: '/aai/voice-notes/2 - Meri Jaan Mujhe Jaan Na Kaho.m4a'
+      title: '🍲 જયુ માઉસીની દૈનિક સંભાળ',
+      note: 'જયુ માઉસી મારા માતાના સ્વસ્થ થવાના સમગ્ર સમય દરમિયાન એક આધારસ્તંભ રહી છે. જ્યારે મારા માતા પોતે રસોઈ કરી શકતા નહોતા ત્યારે તેમણે દરરોજ ઘરેથી બનાવેલું ભોજન મોકલ્યું.',
+      photo: ['/aai/images/jayu-1.jpg', '/aai/images/jayu-2.jpg', '/aai/images/jayu-3.jpg'],
+      photoAlt: ['તેમના સૌથી જૂના મિત્ર જયુ સાથે', 'તેમના સૌથી જૂના મિત્ર જયુ સાથે', 'તેમના સૌથી જૂના મિત્ર જયુ સાથે']
     },
     {
-      id: 'song-5',
+      id: 'Tu Hai Toh',
       type: 'song',
       date: 'નવેમ્બર ૧૦, ૨૦૨૫',
       title: 'તું હૈ તો',
@@ -75,10 +83,19 @@ export const content: AaiContent = {
       type: 'text',
       date: 'નવેમ્બર ૧૧, ૨૦૨૫',
       title: '⚡ લેસરનું બીજું સત્ર',
-      note: 'પરિસ્થિતિ સુધરી રહી છે. પરંતુ હજી પણ જ્યાં હોવું જરૂરી છે ત્યાં નથી. લેસર પ્રક્રિયાનો બીજો સત્ર કર્યો.'
+      note: 'પરિસ્થિતિ સુધરી રહી છે, પરંતુ હજી પણ જ્યાં હોવું જરૂરી છે ત્યાં નથી. રેટિનલ માઇક્રો ટીઅર્સને સુધારવા માટે લેસર પ્રક્રિયાનો બીજો સત્ર કર્યો.'
     },
     {
-      id: 'song-3',
+      id: 'Meri Jaan Mujhe Jaan Na Kaho',
+      type: 'song',
+      date: 'નવેમ્બર ૧૧, ૨૦૨૫',
+      title: 'મેરી જાન મુઝે જાન ના કહો',
+      note: 'દરેક સ્વર સાથે વધુ મજબૂત થઈ રહી છે. આ ક્લાસિક ધૂને અમને બધાને તેમની સમર્પણ અને દરેક રાગમાં તેમને મળતા આનંદની યાદ અપાવી.',
+      audio: '/aai/voice-notes/2 - Meri Jaan Mujhe Jaan Na Kaho.m4a'
+    },
+
+    {
+      id: 'Yeh Raatein',
       type: 'song',
       date: 'નવેમ્બર ૧૨, ૨૦૨૫',
       title: 'યે રાતે',
@@ -86,7 +103,14 @@ export const content: AaiContent = {
       audio: '/aai/voice-notes/4 - Yeh Raatein.m4a'
     },
     {
-      id: 'song-4',
+      id: '2 songs today!',
+      type: 'text',
+      date: 'નવેમ્બર ૧૩, ૨૦૨૫',
+      title: 'આજે 2 ગીતો!',
+      note: 'હવે સારી રીતે શરૂ થયું છે—તેમનો આત્મવિશ્વાસ વધતાં આજે 2 ગીતો રેકોર્ડ કર્યાં!',
+    },
+    {
+      id: 'Betaab Dil Ki Tamanna',
       type: 'song',
       date: 'નવેમ્બર ૧૩, ૨૦૨૫',
       title: 'બેતાબ દિલ કી તમન્ના',
@@ -94,7 +118,7 @@ export const content: AaiContent = {
       audio: '/aai/voice-notes/5 - Betaab Dil Ki Tamanna.m4a'
     },
     {
-      id: 'song-7',
+      id: 'Kehna Hi Kya',
       type: 'song',
       date: 'નવેમ્બર ૧૩, ૨૦૨૫',
       title: 'કહના હી ક્યા',
@@ -102,7 +126,7 @@ export const content: AaiContent = {
       audio: '/aai/voice-notes/7 - Kehna Hi Kya.m4a'
     },
     {
-      id: 'song-6',
+      id: 'Hum Dil De Chuke Sanam',
       type: 'song',
       date: 'નવેમ્બર ૧૪, ૨૦૨૫',
       title: 'હમ દિલ દે ચુકે સનમ',
@@ -110,7 +134,7 @@ export const content: AaiContent = {
       audio: '/aai/voice-notes/6 - Hum Dil De Chuke Sanam.m4a'
     },
     {
-      id: 'song-8',
+      id: 'Sapna Jahan',
       type: 'song',
       date: 'નવેમ્બર ૧૫, ૨૦૨૫',
       title: 'સપના જહાં',
@@ -122,7 +146,7 @@ export const content: AaiContent = {
       type: 'video',
       date: 'નવેમ્બર ૨૨, ૨૦૨૫',
       title: '💝 તેમના સંગીત પરિવાર તરફથી પ્રેમ',
-      note: 'સંગીત વર્ગમાં તેમના સાથી વિદ્યાર્થીઓએ આ હૃદયસ્પર્શી સંદેશ મોકલ્યો, તેમને જણાવ્યું કે તેમની યાદ આવે છે અને તેમના પર પ્રેમ કરવામાં આવે છે.',
+      note: 'પ્રદ્ન્યા મહાજન, ધ રુતુ વસંત મ્યુઝિક ક્લબના સ્થાપક, તેમણે ક્લબ સત્ર દરમિયાન મારા માતાના વોઇસ નોટ્સમાંથી એક શેર કર્યો, જેથી તેમને ખબર પડે કે તેમની યાદ આવે છે અને પ્રેમ કરવામાં આવે છે. પ્રદ્ન્યા-કાકી મારા માતાના સ્વસ્થ થવાના સમગ્ર સમય દરમિયાન પ્રચંડ આધાર હતાં. સંગીત દ્વારા સ્વસ્થ થવાની આ યાત્રાને દસ્તાવેજીકરણ કરવાની કલ્પના પણ તેમનાથી આવી. આ પોસ્ટ તેમના વિના અસ્તિત્વમાં ન હોત.',
       youtube: 'rXhw57l8gSo'
     },
     {
@@ -132,6 +156,13 @@ export const content: AaiContent = {
       title: '🎤 જીવંત ગાયન તરફ પાછા',
       note: 'તેમણે પુણામાં ધ ઓરેંજ - આર્ટ એન્ડ બુક કેફે ખાતે પરફોર્મ કર્યું. તેમના પરફોર્મન્સ પછી, એક શ્રોતાએ તેમને મરાઠીમાં કંઈક ગાવાની વિનંતી કરી. વધુ આવા પરફોર્મન્સ માટે તેમનો યુટ્યુબ ચેનલ જુઓ!',
       youtube: 't0mbQKUmtO0'
+    },
+    {
+      id: 'end-of-journey',
+      type: 'text',
+      date: 'જાન્યુઆરી ૧૧, ૨૦૨૬',
+      title: '🙏🏽 આભાર!',
+      note: 'માતાની સ્વસ્થ થવાની યાત્રાનો ભાગ બનવા બદલ આભાર. તેમની દૃષ્ટિ સુધરતી રહે છે, અને તેમને તક મળે ત્યારે તેઓ ગાતા રહે છે 😊.'
     },
   ],
   ui: {

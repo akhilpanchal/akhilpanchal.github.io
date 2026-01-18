@@ -15,7 +15,7 @@ export const content: AaiContent = {
             type: 'text',
             date: 'October 23, 2025',
             title: '👁️ Bubbly Vision',
-            note: 'Right around Diwali, my mother starts seeing bubbles in her left eye, interfering with her vision. Upon checkup, a retinal detachment is confirmed. Surgery is urgently needed to prevent total detachment.',
+            note: 'Right around Diwali, my mother starts seeing bubbles in her left eye, which interfered with her vision. Upon examination, a sub-total retinal detachment was confirmed. Surgery is urgently needed to prevent total detachment.',
             photo: '/aai/images/pre-surgery.jpg',
             photoAlt: 'Before eye surgery'
         },
@@ -25,7 +25,7 @@ export const content: AaiContent = {
             date: 'October 27, 2025',
             title: '♥️ My Mother in Law',
             note: 'My mother-in-law Manisha Khetan was a great support during her entire journey.\
-            Right from reccomending their family eye doctor, to accompanying to each and every checkups, labs and doctor visit, to helping with daily chores, her presence was the greatest blessing.',
+            From recommending their family eye doctor, to accompanying my parents to each and every checkup, lab visit, and doctor appointment, and helping with daily chores, her presence was a true blessing.',
             photo: ['/aai/images/mil-1.jpg', '/aai/images/mil-2.jpg', '/aai/images/mil-3.jpg'],
             photoAlt: ['My MIL 1', 'My MIL with my Mother', 'Me and my MIL']
         },
@@ -34,7 +34,7 @@ export const content: AaiContent = {
             type: 'milestone',
             date: 'October 27, 2025',
             title: '🏥 Before Surgery',
-            note: 'Getting ready for the procedure—Scleral Buckling. This photo was taken by my mother-in-law',
+            note: 'Getting ready for the procedure — "Scleral Buckling". This photo was taken by my mother-in-law',
             photo: '/aai/images/pre-surgery.jpg',
             photoAlt: 'Before eye surgery'
         },
@@ -53,7 +53,7 @@ export const content: AaiContent = {
             type: 'milestone',
             date: 'October 30, 2025',
             title: '💪 After Surgery',
-            note: 'The surgery went well. The first couple days after surgery were rough. Day 3 looked much better. Now begins the journey of healing and patience.',
+            note: 'The surgery went well. The first couple of days after surgery were rough, but by day 3, things looked much better. Now begins the journey of healing and patience.',
             photo: '/aai/images/post-surgery.jpg',
             photoAlt: 'Just after the surgery'
         },
@@ -62,8 +62,8 @@ export const content: AaiContent = {
             type: 'milestone',
             date: 'November 5, 2025',
             title: '🛏️ Not Over Yet',
-            note: 'Condition improving, but the retinal break is still open. Gas injection and laser procedure performed.\
-            She has to stay in this position for 18 hours a day for ~2 weeks to aid healing.\
+            note: 'Her condition was improving, but the retinal break is still open. Gas injection and laser procedure performed.\
+            She has to stay in this position for 18 hours a day for about2 weeks to aid healing.\
             This pillow setup made by my father demonstrates his jugaad skills that kept her as comfortable as possible!\
             Her neck and back were sore from maintaining this position. \
             Checkups continued regularly and the hard work of being in this position was gradually paying off. \
@@ -76,8 +76,8 @@ export const content: AaiContent = {
             type: 'milestone',
             date: 'November 5, 2025',
             title: '🧡 My Father',
-            note: 'He was the constant support & witness to this journey. Apart from being with her every step of the way, \
-            my father would give her daily massages to help with the soreness caused by being in this position every day.\
+            note: 'He was a constant support and a witness to this journey. Besides being with her every step of the way, \
+            my father gave her daily massages to help with the soreness from maintaining that position.\
             ',
             photo: ['/aai/images/pappa-1.jpg', '/aai/images/pappa-2.jpg', '/aai/images/pappa-3.jpg'],
             photoAlt: ['photo with pappa', 'photo with pappa', 'photo with pappa']
@@ -87,7 +87,7 @@ export const content: AaiContent = {
             type: 'text',
             date: 'November 9, 2025',
             title: '1 song, 1 day at a time',
-            note: 'Each day, as her vision and confidence improve, she records a new song—all while maintaining the recovery position.',
+            note: 'Each day, as her vision and confidence improved, she recorded a new song — all while maintaining the recovery position.',
         },
         {
             id: 'Chhota Sa Balma',
@@ -120,7 +120,7 @@ export const content: AaiContent = {
             type: 'text',
             date: 'November 11, 2025',
             title: '⚡ Another Session of Laser',
-            note: 'Condition continues to improve, but still not where it needs to be. Another session of laser procedure performed to repair the retinal micro tears.'
+            note: 'Her progress was steady, though she still wasn\'t fully healed. Another session of laser procedure performed to repair the retinal micro tears.'
         },
         {
             id: 'Meri Jaan Mujhe Jaan Na Kaho',

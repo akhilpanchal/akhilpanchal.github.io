@@ -189,7 +189,7 @@ export const content: AaiContent = {
             date: 'जानेवारी ११, २०२६',
             title: '🙏🏽 धन्यवाद!',
             note: 'आईच्या बरे होण्याच्या प्रवासाचा भाग होण्याबद्दल धन्यवाद. तिची दृष्टी सुधारत राहते, आणि तिला संधी मिळते तेव्हा ती गात राहते 😊.',
-            photo: ['/aai/images/mummy-1.jpg', '/aai/images/all-1.jpg'],
+            photo: ['/aai/images/mummy-1.jpg', '/aai/images/all-1.jpg', '/aai/images/all-2.jpg'],
         },
 
     ],

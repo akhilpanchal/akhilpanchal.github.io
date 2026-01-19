@@ -204,7 +204,7 @@ export const content: AaiContent = {
             title: '🙏🏽 Thank You!',
             note: 'Thank you for being a part of Aai\'s recovery journey.\
             Her vision continues to improve, and she continues to sing every chance she gets 😊.',
-            photo: ['/aai/images/mummy-1.jpg', '/aai/images/all-1.jpg'],
+            photo: ['/aai/images/mummy-1.jpg', '/aai/images/all-1.jpg', '/aai/images/all-2.jpg'],
         },
     ],
     ui: {

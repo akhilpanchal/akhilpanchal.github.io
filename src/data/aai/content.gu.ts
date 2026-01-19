@@ -188,7 +188,7 @@ export const content: AaiContent = {
             date: 'જાન્યુઆરી ૧૧, ૨૦૨૬',
             title: '🙏🏽 આભાર!',
             note: 'માતાની સ્વસ્થ થવાની યાત્રાનો ભાગ બનવા બદલ આભાર. તેમની દૃષ્ટિ સુધરતી રહે છે, અને તેમને તક મળે ત્યારે તેઓ ગાતા રહે છે 😊.',
-            photo: ['/aai/images/mummy-1.jpg', '/aai/images/all-1.jpg'],
+            photo: ['/aai/images/mummy-1.jpg', '/aai/images/all-1.jpg', '/aai/images/all-2.jpg'],
         },
     ],
     ui: {

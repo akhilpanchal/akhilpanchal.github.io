@@ -188,7 +188,7 @@ export const content: AaiContent = {
             date: 'जनवरी ११, २०२६',
             title: '🙏🏽 धन्यवाद!',
             note: 'आई की रिकवरी यात्रा का हिस्सा बनने के लिए धन्यवाद. उनकी दृष्टि सुधरती रहती है, और वह जब भी मौका मिलता है गाती रहती हैं 😊.',
-            photo: ['/aai/images/mummy-1.jpg', '/aai/images/all-1.jpg'],
+            photo: ['/aai/images/mummy-1.jpg', '/aai/images/all-1.jpg', '/aai/images/all-2.jpg'],
 
         },],
     ui: {

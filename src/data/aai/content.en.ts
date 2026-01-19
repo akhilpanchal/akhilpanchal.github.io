@@ -26,8 +26,8 @@ export const content: AaiContent = {
             title: '♥️ My Mother in Law',
             note: 'My mother-in-law Manisha Khetan was a great support during her entire journey.\
             From recommending their family eye doctor, to accompanying my parents to each and every checkup, lab visit, and doctor appointment, and helping with daily chores, her presence was a true blessing.',
-            photo: ['/aai/images/mil-1.jpg', '/aai/images/mil-2.jpg', '/aai/images/mil-3.jpg'],
-            photoAlt: ['My MIL 1', 'My MIL with my Mother', 'Me and my MIL']
+            photo: ['/aai/images/mil-1.jpg', '/aai/images/mil-2.jpg', '/aai/images/mil-3.jpg', '/aai/images/mil-4.jpg'],
+            photoAlt: ['My MIL 1', 'My MIL with my Mother', 'Me and my MIL', 'My MIL 4']
         },
         {
             id: 'pre-surgery',
@@ -79,7 +79,7 @@ export const content: AaiContent = {
             note: 'He was a constant support and a witness to this journey. Besides being with her every step of the way, \
             my father gave her daily massages to help with the soreness from maintaining that position.\
             ',
-            photo: ['/aai/images/pappa-1.jpg', '/aai/images/pappa-2.jpg', '/aai/images/pappa-3.jpg'],
+            photo: ['/aai/images/pappa-1.jpg', '/aai/images/pappa-2.jpg', '/aai/images/pappa-3.jpg', '/aai/images/pappa-4.jpg'],
             photoAlt: ['photo with pappa', 'photo with pappa', 'photo with pappa']
         },
         {
@@ -199,11 +199,12 @@ export const content: AaiContent = {
         },
         {
             id: 'end-of-journey',
-            type: 'text',
+            type: 'milestone',
             date: 'January 11, 2026',
             title: '🙏🏽 Thank You!',
             note: 'Thank you for being a part of Aai\'s recovery journey.\
-            Her vision continues to improve, and she continues to sing every chance she gets 😊.'
+            Her vision continues to improve, and she continues to sing every chance she gets 😊.',
+            photo: ['/aai/images/mummy-1.jpg', '/aai/images/all-1.jpg'],
         },
     ],
     ui: {

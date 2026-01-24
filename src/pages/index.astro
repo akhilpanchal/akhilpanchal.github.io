@@ -30,22 +30,23 @@ const allPosts = [
     <section>
       <h2 class="text-3xl font-bold mb-6">All Posts</h2>
 
-      <div class="space-y-4">
+      <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-4 items-baseline">
         {allPosts.map((post) => {
         const slug = post.type === 'blog' ? `/posts/${post.slug}` : `/music/${post.slug}`;
         return (
-        <article class="border-b border-border pb-4">
-          <a href={slug} class="block hover:opacity-80 transition-opacity">
-            <div class="flex gap-4 items-baseline">
-              <time class="text-sm text-muted-foreground whitespace-nowrap">
-                {formatDateShort(new Date(post.data.date))}
-              </time>
-              <h3 class="text-lg font-medium hover:text-primary">
+        <>
+          <time class="text-sm text-muted-foreground whitespace-nowrap border-b border-border pb-4">
+            {formatDateShort(new Date(post.data.date))}
+          </time>
+          <article>
+
+            <h3 class="text-lg font-medium border-b border-border pb-4">
+              <a href={slug} class="hover:text-primary hover:opacity-80 transition-opacity">
                 {post.data.title}
-              </h3>
-            </div>
-          </a>
-        </article>
+              </a>
+            </h3>
+          </article>
+        </>
         );
         })}
       </div>

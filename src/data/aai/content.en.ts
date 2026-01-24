@@ -53,7 +53,7 @@ export const content: AaiContent = {
             type: 'milestone',
             date: 'October 30, 2025',
             title: '💪 After Surgery',
-            note: 'The surgery went well. The first couple of days after surgery were rough, but by day 3, things looked much better. Now begins the journey of healing and patience.',
+            note: 'The surgery went well. The first couple of days after surgery were rough, but by day 3, things looked much better (no pun intended). Now begins the journey of healing and patience.',
             photo: '/aai/images/post-surgery.jpg',
             photoAlt: 'Just after the surgery'
         },

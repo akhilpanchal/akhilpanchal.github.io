@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Commute Schedule">
+  <main class="flex-1 max-w-4xl mx-auto px-4 py-12 w-full">
+    <h1 class="text-4xl font-bold mb-8">Commute Schedule</h1>
+    
+    <div class="space-y-12">
+      <section>
+        <h2 class="text-2xl font-semibold mb-6">To Work</h2>
+        <div class="overflow-x-auto border border-border rounded-lg">
+          <table class="w-full">
+            <thead class="bg-muted">
+              <tr>
+                <th class="px-4 py-3 text-left text-sm font-semibold">ECR Departs San Carlos</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">ECR Arrives RWC</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Shuttle Departs RWC</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Shuttle Arrives 1900/2000</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">6:35 AM</td>
+                <td class="px-4 py-3 text-sm">6:51 AM</td>
+                <td class="px-4 py-3 text-sm">6:52 AM*</td>
+                <td class="px-4 py-3 text-sm">7:09 AM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">6:50 AM</td>
+                <td class="px-4 py-3 text-sm">7:06 AM</td>
+                <td class="px-4 py-3 text-sm">7:37 AM</td>
+                <td class="px-4 py-3 text-sm">7:54 AM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">7:02 AM</td>
+                <td class="px-4 py-3 text-sm">7:18 AM</td>
+                <td class="px-4 py-3 text-sm">7:37 AM</td>
+                <td class="px-4 py-3 text-sm">7:54 AM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">7:12 AM</td>
+                <td class="px-4 py-3 text-sm">7:28 AM</td>
+                <td class="px-4 py-3 text-sm">7:37 AM</td>
+                <td class="px-4 py-3 text-sm">7:54 AM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">7:25 AM</td>
+                <td class="px-4 py-3 text-sm">7:51 AM</td>
+                <td class="px-4 py-3 text-sm">8:22 AM</td>
+                <td class="px-4 py-3 text-sm">8:39 AM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">7:40 AM</td>
+                <td class="px-4 py-3 text-sm">8:07 AM</td>
+                <td class="px-4 py-3 text-sm">8:22 AM</td>
+                <td class="px-4 py-3 text-sm">8:39 AM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">7:55 AM</td>
+                <td class="px-4 py-3 text-sm">8:23 AM</td>
+                <td class="px-4 py-3 text-sm">8:51 AM</td>
+                <td class="px-4 py-3 text-sm">9:08 AM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">8:10 AM</td>
+                <td class="px-4 py-3 text-sm">8:38 AM</td>
+                <td class="px-4 py-3 text-sm">8:51 AM</td>
+                <td class="px-4 py-3 text-sm">9:08 AM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">8:25 AM</td>
+                <td class="px-4 py-3 text-sm">8:53 AM</td>
+                <td class="px-4 py-3 text-sm">9:22 AM</td>
+                <td class="px-4 py-3 text-sm">9:39 AM</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold mb-6">To Home</h2>
+        <div class="overflow-x-auto border border-border rounded-lg">
+          <table class="w-full">
+            <thead class="bg-muted">
+              <tr>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Shuttle Departs 1900/2000</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Shuttle Arrives RWC</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">ECR Departs RWC</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">ECR Arrives San Carlos</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">3:54 PM</td>
+                <td class="px-4 py-3 text-sm">4:09 PM</td>
+                <td class="px-4 py-3 text-sm">4:20 PM</td>
+                <td class="px-4 py-3 text-sm">4:37 PM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">4:33 PM</td>
+                <td class="px-4 py-3 text-sm">4:48 PM</td>
+                <td class="px-4 py-3 text-sm">4:50 PM</td>
+                <td class="px-4 py-3 text-sm">5:07 PM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">4:33 PM</td>
+                <td class="px-4 py-3 text-sm">4:48 PM</td>
+                <td class="px-4 py-3 text-sm">5:05 PM</td>
+                <td class="px-4 py-3 text-sm">5:23 PM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">5:13 PM</td>
+                <td class="px-4 py-3 text-sm">5:28 PM</td>
+                <td class="px-4 py-3 text-sm">5:35 PM</td>
+                <td class="px-4 py-3 text-sm">5:53 PM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">5:13 PM</td>
+                <td class="px-4 py-3 text-sm">5:28 PM</td>
+                <td class="px-4 py-3 text-sm">5:50 PM</td>
+                <td class="px-4 py-3 text-sm">6:08 PM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">6:09 PM</td>
+                <td class="px-4 py-3 text-sm">6:24 PM</td>
+                <td class="px-4 py-3 text-sm">6:35 PM</td>
+                <td class="px-4 py-3 text-sm">6:53 PM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">6:48 PM</td>
+                <td class="px-4 py-3 text-sm">7:03 PM</td>
+                <td class="px-4 py-3 text-sm">7:05 PM</td>
+                <td class="px-4 py-3 text-sm">7:23 PM</td>
+              </tr>
+              <tr class="hover:bg-muted/50">
+                <td class="px-4 py-3 text-sm">7:59 PM</td>
+                <td class="px-4 py-3 text-sm">8:14 PM</td>
+                <td class="px-4 py-3 text-sm">8:20 PM</td>
+                <td class="px-4 py-3 text-sm">8:38 PM</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mt-12 pt-8 border-t border-border">
+        <h2 class="text-xl font-semibold mb-4">References</h2>
+        <p class="text-sm text-muted-foreground">
+          Full schedule information:
+          <a 
+            href="https://www.samtrans.com/schedulesandmaps/timetables/ECR.html" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-primary hover:underline ml-1"
+          >
+            SamTrans ECR Schedule
+          </a>
+        </p>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Personal website of Akhil Panchal — built with Astro 7, React 19, Tailwind CSS v4, TypeScript 6, and Vite 8. Content is authored in Markdown/MDX. Styling uses Tailwind CSS v4 with `@tailwindcss/typography`. React components use `lucide-react` v0 (kept for brand icon support) and `shadcn/ui` (dialog components). Audio playback uses `wavesurfer.js`.
+Personal website of Akhil Panchal — built with Astro 7, React 19, Tailwind CSS v4, TypeScript 6, and Vite 8. Content is authored in Markdown/MDX. Styling uses Tailwind CSS v4 with `@tailwindcss/typography`. Audio playback uses `wavesurfer.js`.
 
 ## Commands
 
@@ -39,7 +39,7 @@ Personal website of Akhil Panchal — built with Astro 7, React 19, Tailwind CSS
 - React 19 with `@astrojs/react` v6
 - Tailwind CSS v4 with `@tailwindcss/vite` plugin + `@tailwindcss/typography`
 - TypeScript 6 (strict mode via `astro/tsconfigs/strict`)
-- lucide-react 0.562.x (v0 for brand icon support; v1 removed `Github`, `Linkedin`, `Instagram`, `Youtube`)
+- **Icons:** `lucide-react` 1.x for **UI icons** (e.g. `Moon`, `Sun`, `Play`, `Pause`, `Volume2`, `VolumeX`, `Minimize2`, `Maximize2`, `X`, `ChevronLeft`, `ChevronRight`). Use `simple-icons` npm package for **brand icons** (e.g. `Github`, `Instagram`, `Youtube`). LinkedIn logo not available in `simple-icons` — inline its SVG path directly. Future icon additions must follow this split: never use `lucide-react` for brand icons, and never use `simple-icons` for UI icons.
 - wavesurfer.js 7.x
 - shadcn/ui (dialog components using Radix UI primitives)
 - Content collections via Astro Content Layer API (`src/content.config.ts` with `glob()` loader)

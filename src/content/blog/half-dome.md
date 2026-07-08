@@ -4,7 +4,7 @@ description: "A personal story of overcoming a knee injury to conquer one of Yos
 date: 2022-10-30
 author: "Akhil Panchal"
 image:
-  url: "https://lh3.googleusercontent.com/pw/AP1GczMu7Yhxw2ORneE453kcfcBAVJx7UDdSTcZgjCajTDzzKeV0E7x0LHjtMYqtUTp7s8OFJCj_pAa-s-Dv4jZMO4Ss4imRu0RuSb1o7DJomvaIpb4MYSMJOk7RWcMjq0Oo5-W79EGT_sSJWpgHYmLgOQ5v-Q=w2480-h1395-s-no-gm?authuser=0"
+  url: "/images/half-dome.jpg"
   alt: "Half Dome's distinctive granite peak in Yosemite National Park viewed from Glacier Point"
 tags: ["redemption", "friendship", "knee-injury", "hiking", "yosemite", "half-dome"]
 ---

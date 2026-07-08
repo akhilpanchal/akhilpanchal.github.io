@@ -4,7 +4,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="Commute Schedule">
   <main class="flex-1 max-w-4xl mx-auto px-4 py-12 w-full">
-    <h1 class="text-4xl font-bold mb-8">Commute Schedule</h1>
+    <h1 class="text-4xl font-bold mb-4">Commute Schedule</h1>
+    <p class="text-sm text-muted-foreground mb-8 italic">
+      This schedule was accurate as of the last update. Always verify with the
+      <a href="https://www.samtrans.com/schedulesandmaps/timetables/ECR.html"
+         target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">
+        official SamTrans ECR schedule
+      </a>.
+    </p>
     
     <div class="space-y-12">
       <section>

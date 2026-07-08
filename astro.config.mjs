@@ -7,6 +7,11 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://algorythm.dev',
+  image: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'img.youtube.com' },
+    ],
+  },
   i18n: {
     locales: ['en', 'mr', 'gu', 'hi'],
     defaultLocale: 'en',

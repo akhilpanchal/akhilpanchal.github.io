@@ -18,7 +18,7 @@ const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.
         <PostCard
           title={post.data.title}
           date={post.data.date}
-          slug={`/posts/${post.slug}`}
+          slug={`/posts/${post.id}`}
           tags={post.data.tags}
         />
       ))}

@@ -30,7 +30,7 @@ const allPosts = allBlogPosts
 
       <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-4 items-baseline">
         {allPosts.map((post) => {
-        const slug = `/posts/${post.slug}`;
+        const slug = `/posts/${post.id}`;
         return (
         <>
           <time class="text-sm text-muted-foreground whitespace-nowrap border-b border-border pb-4">

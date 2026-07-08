@@ -4,9 +4,8 @@ import type { APIContext } from 'astro';
 
 export async function GET(context: APIContext) {
   const blog = await getCollection('blog');
-  const music = await getCollection('music');
   
-  const allPosts = [...blog, ...music].sort(
+  const allPosts = blog.sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
   );
   
@@ -17,7 +16,7 @@ export async function GET(context: APIContext) {
     items: allPosts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.date,
-      link: `/${post.collection}/${post.slug}/`,
+      link: `/posts/${post.slug}/`,
       categories: post.data.tags || [],
     })),
     customData: `<language>en-us</language>`,
